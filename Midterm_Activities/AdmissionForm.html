@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Data Sheet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      line-height: 1.4;
+    }
+    .header-section {
+      display: flex;
+      align-items: center; 
+      gap: 20px;
+    }
+    .header-section .logo {
+      width: 80px;
+      height: 80px;
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+    .header-text {
+      flex: 1; 
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header-text h2 {
+      margin: 5px 0;
+      font-size: 1.2rem;
+    }
+    .header-text h1 {
+      margin: 5px 0;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    td, th {
+      vertical-align: top;
+      padding: 5px;
+    }
+    .section-title {
+      background-color: #e0e0e0;
+      padding: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+    .label-cell {
+      width: 20%;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    .input-cell, .input-cell-short, .input-cell-medium, .input-cell-wide {
+      border-bottom: 1px solid #000;
+    }
+    /* Adjust widths for input fields */
+    .input-cell input,
+    .input-cell-short input,
+    .input-cell-medium input,
+    .input-cell-wide input {
+      width: 95%;
+      border: none;
+      outline: none;
+      font-size: inherit;
+      background: transparent;
+    }
+    .radio-group, .checkbox-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .radio-group label, .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .parents-container {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .parents-container > div {
+        flex: 1;
+    }
+    .working-toggle {
+      display: none;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-section">
+    <div class="logo">
+      LOGO
+    </div>
+    <div class="header-text">
+      <h2>Sample University Enrollment System</h2>
+      <h1>Personal Data Sheet</h1>
+      <p>(Graduate School, Law, Medicine)</p>
+    </div>
+  </div>
+
+  <!-- Begin Form -->
+  <form action="#" method="post">
+    <table>
+      <tr>
+        <td class="label-cell">Program:</td>
+        <td class="input-cell-short"><input type="text" name="program" required></td>
+        <td class="label-cell">Student #:</td>
+        <td class="input-cell-short"><input type="text" name="student_number" required></td>
+      </tr>
+    </table>
+
+    <div class="section-title">Student Details</div>
+    <table>
+      <tr>
+        <td class="label-cell">Surname:</td>
+        <td class="input-cell"><input type="text" name="surname" required></td>
+        <td class="label-cell">Given Name:</td>
+        <td class="input-cell"><input type="text" name="given_name" required></td>
+        <td class="label-cell">Middle Name:</td>
+        <td class="input-cell"><input type="text" name="middle_name"></td>
+        <td class="label-cell">Nickname:</td>
+        <td class="input-cell"><input type="text" name="nickname"></td>
+      </tr>
+      <tr>
+        <td class="label-cell">City Address:</td>
+        <td class="input-cell"><input type="text" name="city_address" required></td>
+        <td class="label-cell">Zip Code:</td>
+        <td class="input-cell-short"><input type="text" name="zip_code" pattern="\d*" title="Numbers only"></td>
+        <td class="label-cell">Tel. No.:</td>
+        <td class="input-cell-short"><input type="tel" name="telephone"></td>
+        <td class="label-cell">E-mail Address:</td>
+        <td class="input-cell"><input type="email" name="email" required></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Home Address:</td>
+        <td class="input-cell-wide" colspan="7"><input type="text" name="home_address" required></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Mobile #:</td>
+        <td class="input-cell-short"><input type="tel" name="mobile"></td>
+        <td class="label-cell">Birthplace:</td>
+        <td class="input-cell-short"><input type="text" name="birthplace"></td>
+        <td class="label-cell">Religion:</td>
+        <td class="input-cell-short"><input type="text" name="religion"></td>
+        <td class="label-cell">Sex:</td>
+        <td class="input-cell-short">
+          <div class="radio-group">
+            <label><input type="radio" name="sex" value="male" required> Male</label>
+            <label><input type="radio" name="sex" value="female"> Female</label>
+            <label><input type="radio" name="sex" value="other"> Other</label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="label-cell">Citizenship:</td>
+        <td class="input-cell-short"><input type="text" name="citizenship"></td>
+        <td class="label-cell">Age:</td>
+        <td class="input-cell-short"><input type="number" name="age" min="0"></td>
+        <td class="label-cell">If Alien, ACR #:</td>
+        <td class="input-cell-short"><input type="text" name="acr_number"></td>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Legal Status:</td>
+        <td colspan="7">
+          <div class="radio-group">
+            <label><input type="radio" name="legal_status" value="citizen_rp" required> Citizen of RP</label>
+            <label><input type="radio" name="legal_status" value="permanent_resident"> Permanent Resident</label>
+            <label><input type="radio" name="legal_status" value="student_visa"> Student visa holder</label>
+            <label><input type="radio" name="legal_status" value="dependent_visa"> Dependent visa holder</label>
+            <label><input type="radio" name="legal_status" value="other_visa"> Other visa</label>
+            <label><input type="radio" name="legal_status" value="unknown"> Legal status not known</label>
+          </div>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="label-cell">Civil Status:</td>
+        <td colspan="7">
+          <div class="radio-group">
+            <label><input type="radio" name="civil_status" value="single" required> Single</label>
+            <label><input type="radio" name="civil_status" value="married"> Married</label>
+            <label><input type="radio" name="civil_status" value="divorced"> Divorced</label>
+            <label><input type="radio" name="civil_status" value="widowed"> Widowed</label>
+            <label><input type="radio" name="civil_status" value="separated"> Separated</label>
+          </div>
+          <div class="radio-group" style="margin-top: 10px;">
+            <label><input type="radio" name="working_status" value="working" id="workingRadio"> Working</label>
+            <label><input type="radio" name="working_status" value="non_working" checked> Non working</label>
+            <span class="working-toggle" id="workingField">
+              Office/Bus. Tel. #: <input type="tel" name="office_tel" style="width: 150px; border-bottom: 1px solid #000;">
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="parents-container">
+      <div>
+        <div class="section-title">Father's Information</div>
+        <table>
+          <tr>
+            <td class="label-cell">Surname:</td>
+            <td class="input-cell"><input type="text" name="father_surname"></td>
+            <td class="label-cell">Given Name:</td>
+            <td class="input-cell"><input type="text" name="father_given_name"></td>
+            <td class="label-cell">Middle Name:</td>
+            <td class="input-cell"><input type="text" name="father_middle_name"></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Auxiliary Name:</td>
+            <td class="input-cell"><input type="text" name="father_auxiliary_name"></td>
+            <td class="label-cell">City Address:</td>
+            <td class="input-cell"><input type="text" name="father_city_address"></td>
+            <td class="label-cell">Tel. No.:</td>
+            <td class="input-cell-short"><input type="tel" name="father_tel"></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Occupation:</td>
+            <td class="input-cell"><input type="text" name="father_occupation"></td>
+            <td class="label-cell">Email:</td>
+            <td class="input-cell"><input type="email" name="father_email"></td>
+            <td class="label-cell">Off./Bus. Tel. #:</td>
+            <td class="input-cell-short"><input type="tel" name="father_office_tel"></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <div class="section-title">Mother's Information</div>
+        <table>
+          <tr>
+            <td class="label-cell">Surname:</td>
+            <td class="input-cell"><input type="text" name="mother_surname"></td>
+            <td class="label-cell">Given Name:</td>
+            <td class="input-cell"><input type="text" name="mother_given_name"></td>
+            <td class="label-cell">Middle Name:</td>
+            <td class="input-cell"><input type="text" name="mother_middle_name"></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Auxiliary Name:</td>
+            <td class="input-cell"><input type="text" name="mother_auxiliary_name"></td>
+            <td class="label-cell">City Address:</td>
+            <td class="input-cell"><input type="text" name="mother_city_address"></td>
+            <td class="label-cell">Tel. No.:</td>
+            <td class="input-cell-short"><input type="tel" name="mother_tel"></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Occupation:</td>
+            <td class="input-cell"><input type="text" name="mother_occupation"></td>
+            <td class="label-cell">Email:</td>
+            <td class="input-cell"><input type="email" name="mother_email"></td>
+            <td class="label-cell">Off./Bus. Tel. #:</td>
+            <td class="input-cell-short"><input type="tel" name="mother_office_tel"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-title">Guardian’s Information (If Applicable)</div>
+    <table>
+      <tr>
+        <td class="label-cell">Surname:</td>
+        <td class="input-cell"><input type="text" name="guardian_surname"></td>
+        <td class="label-cell">Given Name:</td>
+        <td class="input-cell"><input type="text" name="guardian_given_name"></td>
+        <td class="label-cell">Middle Name:</td>
+        <td class="input-cell"><input type="text" name="guardian_middle_name"></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Auxiliary Name:</td>
+        <td class="input-cell"><input type="text" name="guardian_auxiliary_name"></td>
+        <td class="label-cell">Relationship:</td>
+        <td class="input-cell-short"><input type="text" name="guardian_relationship"></td>
+        <td class="label-cell">Parent's Tel. #:</td>
+        <td class="input-cell-short"><input type="tel" name="guardian_parent_tel"></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Address:</td>
+        <td class="input-cell-wide" colspan="5"><input type="text" name="guardian_address"></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Zip Code:</td>
+        <td class="input-cell-short"><input type="text" name="guardian_zip" pattern="\d*"></td>
+        <td class="label-cell">Tel. No.:</td>
+        <td class="input-cell-short"><input type="tel" name="guardian_tel"></td>
+        <td class="label-cell">Off./Bus. Tel. #:</td>
+        <td class="input-cell-short"><input type="tel" name="guardian_office_tel"></td>
+      </tr>
+    </table>
+
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <script>
+    document.getElementById('workingRadio').addEventListener('change', function() {
+      document.getElementById('workingField').style.display = 'inline-block';
+    });
+    const nonWorkingRadios = document.getElementsByName('working_status');
+    nonWorkingRadios.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        if(this.value === "non_working") {
+          document.getElementById('workingField').style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIP1101 Lecture 4: Lists, Links, and Images</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      line-height: 1.6; 
+      margin: 0; 
+      padding: 0; 
+      color: #333;
+      background: #f5f5f5;
+    }
+    header { 
+      background: #2c3e50; 
+      color: white; 
+      padding: 1rem 2rem; 
+    }
+    header h1 { 
+      margin: 0; 
+      font-size: 2rem; 
+    }
+    nav { 
+      background: #ecf0f1; 
+      padding: 1rem; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100;
+    }
+    nav ul { 
+      list-style: none; 
+      margin: 0; 
+      padding: 0; 
+      display: flex; 
+      flex-wrap: wrap; 
+    }
+    nav li { 
+      margin-right: 1rem; 
+    }
+    nav a { 
+      text-decoration: none; 
+      color: #2980b9; 
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    nav a:hover { 
+      background: #d6dbdf; 
+    }
+    main { 
+      padding: 2rem; 
+      max-width: 1000px; 
+      margin: auto; 
+    }
+    section { 
+      margin-bottom: 2rem; 
+      background: white;
+      padding: 1.5rem;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h2 { 
+      border-bottom: 2px solid #bdc3c7; 
+      padding-bottom: 0.5rem; 
+      color: #2c3e50;
+    }
+    h3 { 
+      color: #2980b9; 
+      margin-top: 1.5rem; 
+      margin-bottom: 0.8rem; 
+    }
+    p { 
+      margin-bottom: 1rem; 
+    }
+    code { 
+      background: #ecf0f1; 
+      padding: 2px 6px; 
+      border-radius: 4px; 
+      color: #c0392b;
+      font-family: monospace;
+    }
+    pre { 
+      background: #ecf0f1; 
+      padding: 15px; 
+      border-radius: 4px; 
+      overflow-x: auto; 
+      margin: 1.5rem 0; 
+      color: #2c3e50; 
+      border-left: 4px solid #3498db;
+    }
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin: 1.5rem 0; 
+      background: white;
+      border: 1px solid #d6dbdf;
+    }
+    th, td { 
+      border: 1px solid #d6dbdf; 
+      padding: 12px; 
+      text-align: left; 
+    }
+    th { 
+      background: #3498db; 
+      color: white; 
+      font-weight: bold;
+    }
+    tr:nth-child(even) { 
+      background: #f8f9fa; 
+    }
+    .callout { 
+      background: #f9edbe; 
+      border-left: 4px solid #f0c36d; 
+      padding: 1rem; 
+      margin: 1.5rem 0; 
+      border-radius: 0 4px 4px 0;
+    }
+    .example { 
+      background: #f8f9fa; 
+      padding: 1.5rem; 
+      border-radius: 4px; 
+      margin: 1.5rem 0; 
+      border: 1px solid #d6dbdf;
+    }
+    .example h4 { 
+      color: #2c3e50; 
+      margin-top: 0; 
+      margin-bottom: 1rem; 
+    }
+    .list-demo {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 1rem 0;
+    }
+    .image-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .image-box {
+      border: 1px solid #d6dbdf;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      background: white;
+      flex: 1;
+      min-width: 200px;
+    }
+    .image-box img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    footer { 
+      background: #2c3e50; 
+      color: white; 
+      text-align: center; 
+      padding: 1.5rem; 
+      font-size: 0.9rem; 
+    }
+    ul { 
+      margin-left: 1.5rem; 
+      margin-bottom: 1.5rem; 
+    }
+    li { 
+      margin-bottom: 0.8rem; 
+    }
+    .nav-demo {
+      background: #333333;
+      padding: 0;
+      margin: 1.5rem 0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .nav-demo ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .nav-demo li {
+      float: left;
+      margin: 0;
+    }
+    .nav-demo li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 16px;
+      text-decoration: none;
+    }
+    .nav-demo li a:hover {
+      background-color: #111111;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CIP1101 Lecture 4: Lists, Links, and Images</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#lists">HTML Lists</a></li>
+      <li><a href="#links">HTML Links</a></li>
+      <li><a href="#images">HTML Images</a></li>
+      <li><a href="#reference">References</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="lists">
+      <h2>HTML Lists</h2>
+      <p>HTML lists help organize information into documents readers can quickly understand, scan, and extract.</p>
+      
+      <h3>Ordered Lists &lt;ol&gt;</h3>
+      <p>Ordered lists are numbered lists where each item is numbered sequentially:</p>
+      <div class="example">
+        <pre>&lt;ol&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+  &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ol&gt;</pre>
+        <h4>Result:</h4>
+        <ol>
+          <li>First item</li>
+          <li>Second item</li>
+          <li>Third item</li>
+        </ol>
+      </div>
+      
+      <h3>List Style Types</h3>
+      <p>You can customize the numbering style with CSS:</p>
+      <div class="example">
+        <pre>ol {
+  list-style-type: upper-roman;
+}</pre>
+        <h4>Result:</h4>
+        <ol style="list-style-type: upper-roman;">
+          <li>Notebook</li>
+          <li>Ballpen</li>
+          <li>Yellow Paper</li>
+        </ol>
+      </div>
+      
+      <table>
+        <tr>
+          <th>list-style-type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>decimal</td>
+          <td>Numbered with numbers (default)</td>
+        </tr>
+        <tr>
+          <td>upper-alpha</td>
+          <td>Numbered with uppercase letters</td>
+        </tr>
+        <tr>
+          <td>lower-alpha</td>
+          <td>Numbered with lowercase letters</td>
+        </tr>
+        <tr>
+          <td>upper-roman</td>
+          <td>Numbered with uppercase roman numbers</td>
+        </tr>
+        <tr>
+          <td>lower-roman</td>
+          <td>Numbered with lowercase roman numbers</td>
+        </tr>
+      </table>
+      
+      <h3>Unordered Lists &lt;ul&gt;</h3>
+      <p>Unordered lists are bulleted lists:</p>
+      <div class="example">
+        <pre>&lt;ul&gt;
+  &lt;li&gt;Notebook&lt;/li&gt;
+  &lt;li&gt;Ballpen&lt;/li&gt;
+  &lt;li&gt;Yellow Paper&lt;/li&gt;
+&lt;/ul&gt;</pre>
+        <h4>Result:</h4>
+        <ul>
+          <li>Notebook</li>
+          <li>Ballpen</li>
+          <li>Yellow Paper</li>
+        </ul>
+      </div>
+      
+      <h3>List Bullet Types</h3>
+      <table>
+        <tr>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>disc</td>
+          <td>Bullet (default)</td>
+        </tr>
+        <tr>
+          <td>circle</td>
+          <td>Circle</td>
+        </tr>
+        <tr>
+          <td>square</td>
+          <td>Square</td>
+        </tr>
+        <tr>
+          <td>none</td>
+          <td>No marker</td>
+        </tr>
+      </table>
+      
+      <h3>Description Lists &lt;dl&gt;</h3>
+      <p>Description lists are used for terms and their definitions:</p>
+      <div class="example">
+        <pre>&lt;dl&gt;
+  &lt;dt&gt;Notebook&lt;/dt&gt;
+  &lt;dd&gt;- a small book with blank or ruled pages&lt;/dd&gt;
+  &lt;dt&gt;Ballpen&lt;/dt&gt;
+  &lt;dd&gt;- a pen that dispenses ink over a metal ball&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+        <h4>Result:</h4>
+        <dl>
+          <dt>Notebook</dt>
+          <dd>- a small book with blank or ruled pages</dd>
+          <dt>Ballpen</dt>
+          <dd>- a pen that dispenses ink over a metal ball</dd>
+        </dl>
+      </div>
+      
+      <h3>Nested Lists</h3>
+      <p>Lists can be nested inside other lists:</p>
+      <div class="example">
+        <pre>&lt;ul&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+  &lt;li&gt;Tea
+    &lt;ul&gt;
+      &lt;li&gt;Black tea&lt;/li&gt;
+      &lt;li&gt;Green tea&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+&lt;/ul&gt;</pre>
+        <h4>Result:</h4>
+        <ul>
+          <li>Coffee</li>
+          <li>Tea
+            <ul>
+              <li>Black tea</li>
+              <li>Green tea</li>
+            </ul>
+          </li>
+          <li>Milk</li>
+        </ul>
+      </div>
+      
+      <h3>Horizontal List with CSS</h3>
+      <p>Lists can be styled horizontally to create navigation menus:</p>
+      <div class="example">
+        <pre>ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+li a:hover {
+  background-color: #111111;
+}</pre>
+        <h4>Result:</h4>
+        <div class="nav-demo">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <section id="links">
+      <h2>HTML Links</h2>
+      <p>Hyperlinks allow users to navigate between web pages:</p>
+      
+      <h3>Basic Link Syntax</h3>
+      <div class="example">
+        <pre>&lt;a href="https://www.example.com"&gt;Visit Example&lt;/a&gt;</pre>
+      </div>
+      
+      <h3>Absolute vs Relative Links</h3>
+      <table>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td>Absolute URL</td>
+          <td>Links to a different website</td>
+          <td><code>&lt;a href="http://google.com"&gt;Google&lt;/a&gt;</code></td>
+        </tr>
+        <tr>
+          <td>Relative URL</td>
+          <td>Links within the same website</td>
+          <td><code>&lt;a href="about.html"&gt;About&lt;/a&gt;</code></td>
+        </tr>
+      </table>
+      
+      <h3>Link States</h3>
+      <p>Links can be styled differently based on their state:</p>
+      <div class="example">
+        <pre>a:link { color: blue; }       /* Unvisited link */
+a:visited { color: purple; }  /* Visited link */
+a:hover { color: red; }       /* Mouse over link */
+a:active { color: green; }    /* Selected link */</pre>
+      </div>
+      
+      <h3>Target Attribute</h3>
+      <p>Controls where the linked document opens:</p>
+      <table>
+        <tr>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>_blank</td>
+          <td>Opens in new window/tab</td>
+        </tr>
+        <tr>
+          <td>_self</td>
+          <td>Opens in same window (default)</td>
+        </tr>
+        <tr>
+          <td>_parent</td>
+          <td>Opens in parent frame</td>
+        </tr>
+        <tr>
+          <td>_top</td>
+          <td>Opens in full body of window</td>
+        </tr>
+      </table>
+      
+      <h3>Image as Link</h3>
+      <p>Images can be used as clickable links:</p>
+      <div class="example">
+        <pre>&lt;a href="home.html"&gt;
+  &lt;img src="logo.png" alt="Home"&gt;
+&lt;/a&gt;</pre>
+      </div>
+      
+      <h3>Internal Links</h3>
+      <p>Links to specific sections within the same page:</p>
+      <div class="example">
+        <pre>&lt;a href="#section1"&gt;Go to Section 1&lt;/a&gt;
+...
+&lt;h2 id="section1"&gt;Section 1&lt;/h2&gt;</pre>
+      </div>
+    </section>
+    
+    <section id="images">
+      <h2>HTML Images</h2>
+      <p>Images enhance the design and appearance of web pages:</p>
+      
+      <h3>Image Formats</h3>
+      <table>
+        <tr>
+          <th>Format</th>
+          <th>Best For</th>
+          <th>Features</th>
+        </tr>
+        <tr>
+          <td>WebP</td>
+          <td>All web images</td>
+          <td>Modern format, good compression</td>
+        </tr>
+        <tr>
+          <td>GIF</td>
+          <td>Simple graphics, animations</td>
+          <td>Supports transparency, animation</td>
+        </tr>
+        <tr>
+          <td>JPEG</td>
+          <td>Photographs</td>
+          <td>Good compression, millions of colors</td>
+        </tr>
+        <tr>
+          <td>PNG</td>
+          <td>Graphics with transparency</td>
+          <td>Lossless compression, alpha transparency</td>
+        </tr>
+      </table>
+      
+      <h3>Image Syntax</h3>
+      <div class="example">
+        <pre>&lt;img src="image.jpg" alt="Description"&gt;</pre>
+        <p>The <code>alt</code> attribute provides alternative text for accessibility.</p>
+      </div>
+      
+      <h3>Image Size</h3>
+      <p>Set image dimensions with the style attribute:</p>
+      <div class="example">
+        <pre>&lt;img src="panda.png" alt="Panda" style="width:500px;height:400px;"&gt;</pre>
+      </div>
+      
+      <h3>Images from Different Locations</h3>
+      <div class="example">
+        <p><strong>Same folder:</strong> <code>&lt;img src="logo.png" alt="Logo"&gt;</code></p>
+        <p><strong>Subfolder:</strong> <code>&lt;img src="images/logo.png" alt="Logo"&gt;</code></p>
+        <p><strong>External server:</strong> <code>&lt;img src="https://example.com/logo.png" alt="Logo"&gt;</code></p>
+      </div>
+      
+      <h3>Floating Images</h3>
+      <p>Images can float next to text:</p>
+      <div class="example">
+        <pre>&lt;p&gt;
+  &lt;img src="bear.png" alt="Bear" style="float:right;width:100px;height:100px;"&gt;
+  This text will wrap around the image on the left.
+&lt;/p&gt;</pre>
+      </div>
+      
+      <h3>Image Maps</h3>
+      <p>Create clickable areas within an image:</p>
+      <div class="example">
+        <pre>&lt;img src="worldmap.jpg" alt="World Map" usemap="#worldmap"&gt;
+
+&lt;map name="worldmap"&gt;
+  &lt;area shape="rect" coords="100,50,200,150" href="europe.html" alt="Europe"&gt;
+  &lt;area shape="circle" coords="300,200,50" href="asia.html" alt="Asia"&gt;
+&lt;/map&gt;</pre>
+      </div>
+      
+      <h3>Background Images</h3>
+      <p>Set images as background for elements:</p>
+      <div class="example">
+        <pre>body {
+  background-image: url('background.jpg');
+}</pre>
+      </div>
+    </section>
+    
+    <section id="reference">
+      <h2>References</h2>
+      <ul>
+        <li>Jenkins, S. (2013). Web Design All-in-One for Dummies. John Wiley & Sons.</li>
+        <li>Parker, J. (2021). HTML for Beginners: A Complete Beginners Guide to Learn Html in 1 Hour and Master Your Web Designing.</li>
+        <li>W3Schools online web tutorials. (n.d.). https://www.w3schools.com/</li>
+        <li>Sklar, J. (2012). Web Design Principles.</li>
+        <li>Castro, E., & Hyslop, B. (2013). HTML and CSS: Visual QuickStart Guide. Peachpit Press.</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 CIP1101 Web Design Lecture</p>
+  </footer>
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ 
+          behavior: 'smooth' 
+        });
+      });
+    });
+  </script>
+</body>
+</html>

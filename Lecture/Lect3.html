@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIP1101 Lecture 3: Lists and Tables</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      line-height: 1.6; 
+      margin: 0; 
+      padding: 0; 
+      color: #333;
+      background: #f5f5f5;
+    }
+    header { 
+      background: #2c3e50; 
+      color: white; 
+      padding: 1rem 2rem; 
+    }
+    header h1 { 
+      margin: 0; 
+      font-size: 2rem; 
+    }
+    nav { 
+      background: #ecf0f1; 
+      padding: 1rem; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100;
+    }
+    nav ul { 
+      list-style: none; 
+      margin: 0; 
+      padding: 0; 
+      display: flex; 
+      flex-wrap: wrap; 
+    }
+    nav li { 
+      margin-right: 1rem; 
+    }
+    nav a { 
+      text-decoration: none; 
+      color: #2980b9; 
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    nav a:hover { 
+      background: #d6dbdf; 
+    }
+    main { 
+      padding: 2rem; 
+      max-width: 1000px; 
+      margin: auto; 
+    }
+    section { 
+      margin-bottom: 2rem; 
+      background: white;
+      padding: 1.5rem;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h2 { 
+      border-bottom: 2px solid #bdc3c7; 
+      padding-bottom: 0.5rem; 
+      color: #2c3e50;
+    }
+    h3 { 
+      color: #2980b9; 
+      margin-top: 1.5rem; 
+      margin-bottom: 0.8rem; 
+    }
+    p { 
+      margin-bottom: 1rem; 
+    }
+    code { 
+      background: #ecf0f1; 
+      padding: 2px 6px; 
+      border-radius: 4px; 
+      color: #c0392b;
+      font-family: monospace;
+    }
+    pre { 
+      background: #ecf0f1; 
+      padding: 15px; 
+      border-radius: 4px; 
+      overflow-x: auto; 
+      margin: 1.5rem 0; 
+      color: #2c3e50; 
+      border-left: 4px solid #3498db;
+    }
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin: 1.5rem 0; 
+      background: white;
+      border: 1px solid #d6dbdf;
+    }
+    th, td { 
+      border: 1px solid #d6dbdf; 
+      padding: 12px; 
+      text-align: left; 
+    }
+    th { 
+      background: #3498db; 
+      color: white; 
+      font-weight: bold;
+    }
+    tr:nth-child(even) { 
+      background: #f8f9fa; 
+    }
+    .callout { 
+      background: #f9edbe; 
+      border-left: 4px solid #f0c36d; 
+      padding: 1rem; 
+      margin: 1.5rem 0; 
+      border-radius: 0 4px 4px 0;
+    }
+    .example { 
+      background: #f8f9fa; 
+      padding: 1.5rem; 
+      border-radius: 4px; 
+      margin: 1.5rem 0; 
+      border: 1px solid #d6dbdf;
+    }
+    .example h4 { 
+      color: #2c3e50; 
+      margin-top: 0; 
+      margin-bottom: 1rem; 
+    }
+    footer { 
+      background: #2c3e50; 
+      color: white; 
+      text-align: center; 
+      padding: 1.5rem; 
+      font-size: 0.9rem; 
+    }
+    ul { 
+      margin-left: 1.5rem; 
+      margin-bottom: 1.5rem; 
+    }
+    li { 
+      margin-bottom: 0.8rem; 
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CIP1101 Lecture 3: Lists and Tables</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#styles">HTML Styles</a></li>
+      <li><a href="#tables">HTML Tables</a></li>
+      <li><a href="#cells">Cell Spanning</a></li>
+      <li><a href="#reference">References</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="styles">
+      <h2>HTML Styles</h2>
+      <p>The HTML style attribute is used to add styles to an element, such as color, font, size, and more.</p>
+      <pre>&lt;tagname style="property:value;"&gt;</pre>
+      
+      <h3>Background Color</h3>
+      <p>The CSS background-color property defines the background color for an HTML element.</p>
+      <div class="example">
+        <pre>&lt;body style="background-color:DarkTurquoise;"&gt;</pre>
+        <p>Set background color for two different elements:</p>
+        <pre>
+&lt;h1 style="background-color:cyan;"&gt;This is a heading&lt;/h1&gt;
+&lt;p style="background-color:tomato;"&gt;This is a paragraph.&lt;/p&gt;</pre>
+      </div>
+      
+      <h3>Text Color</h3>
+      <p>The CSS color property defines the text color for an HTML element:</p>
+      <div class="example">
+        <pre>
+&lt;h1 style="color:red;"&gt;This is a heading&lt;/h1&gt;
+&lt;p style="color:blue;"&gt;This is a paragraph.&lt;/p&gt;</pre>
+      </div>
+      
+      <h3>Fonts</h3>
+      <p>The CSS font-family property defines the font to be used for an HTML element:</p>
+      <div class="example">
+        <pre>
+&lt;h1 style="font-family:verdana;"&gt;This is a heading&lt;/h1&gt;
+&lt;p style="font-family:courier;"&gt;This is a paragraph.&lt;/p&gt;</pre>
+      </div>
+      
+      <h3>Text Size</h3>
+      <p>The CSS font-size property defines the text size for an HTML element:</p>
+      <div class="example">
+        <pre>
+&lt;h1 style="font-size:300%;"&gt;This is a heading&lt;/h1&gt;
+&lt;p style="font-size:30pt;"&gt;This is a paragraph.&lt;/p&gt;</pre>
+      </div>
+      
+      <h3>Text Alignment</h3>
+      <p>The CSS text-align property defines the horizontal text alignment for an HTML element:</p>
+      <div class="example">
+        <pre>
+&lt;h1 style="text-align:center;"&gt;Centered Headings&lt;/h1&gt;
+&lt;p style="text-align:center;"&gt;Centered paragraph.&lt;/p&gt;</pre>
+      </div>
+    </section>
+    
+    <section id="tables">
+      <h2>HTML Tables</h2>
+      <h3>Defining an HTML Table</h3>
+      <p>An HTML table is defined with the <code>&lt;table&gt;</code> tag. Each table row is defined with the <code>&lt;tr&gt;</code> tag. A table header is defined with the <code>&lt;th&gt;</code> tag. A table data/cell is defined with the <code>&lt;td&gt;</code> tag.</p>
+      
+      <div class="example">
+        <pre>
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Firstname&lt;/th&gt;
+    &lt;th&gt;Lastname&lt;/th&gt;
+    &lt;th&gt;Age&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Nicole&lt;/td&gt;
+    &lt;td&gt;Pascual&lt;/td&gt;
+    &lt;td&gt;18&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Allen&lt;/td&gt;
+    &lt;td&gt;Ramirez&lt;/td&gt;
+    &lt;td&gt;18&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+        
+        <h4>Result:</h4>
+        <table>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Age</th>
+          </tr>
+          <tr>
+            <td>Nicole</td>
+            <td>Pascual</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td>Allen</td>
+            <td>Ramirez</td>
+            <td>18</td>
+          </tr>
+        </table>
+      </div>
+      
+      <h3>HTML Table - Adding a Border</h3>
+      <p>If you do not specify a border for the table, it will be displayed without borders. A border is set using the CSS border property:</p>
+      <pre>
+table, th, td {
+  border: 1px solid black;
+}</pre>
+      
+      <h3>HTML Table - Collapsed Borders</h3>
+      <p>If you want the borders to collapse into one border, add the CSS border-collapse property:</p>
+      <pre>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}</pre>
+      
+      <h3>HTML Table - Adding Cell Padding</h3>
+      <p>Cell padding specifies the space between the cell content and its borders. To set the padding, use the CSS padding property:</p>
+      <pre>
+th, td {
+  padding: 15px;
+}</pre>
+      
+      <h3>HTML Table - Left-align Headings</h3>
+      <p>By default, table headings are bold and centered. To left-align the table headings, use the CSS text-align property:</p>
+      <pre>
+th {
+  text-align: left;
+}</pre>
+      
+      <h3>HTML Table - Adding Border Spacing</h3>
+      <p>Border spacing specifies the space between the cells. To set the border spacing for a table, use the CSS border-spacing property:</p>
+      <pre>
+table {
+  border-spacing: 5px;
+}</pre>
+      <div class="callout">
+        <strong>Note:</strong> If the table has collapsed borders, border-spacing has no effect.
+      </div>
+    </section>
+    
+    <section id="cells">
+      <h2>Cell Spanning</h2>
+      <h3>Cells that Span Many Columns</h3>
+      <p>To make a cell span more than one column, use the colspan attribute:</p>
+      <div class="example">
+        <pre>
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Company Name&lt;/th&gt;
+    &lt;th colspan="2"&gt;Telephone&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;The Travel Club&lt;/td&gt;
+    &lt;td&gt;(02) 332-7183&lt;/td&gt;
+    &lt;td&gt;(02) 815-7418&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+        
+        <h4>Result:</h4>
+        <table>
+          <tr>
+            <th>Company Name</th>
+            <th colspan="2">Telephone</th>
+          </tr>
+          <tr>
+            <td>The Travel Club</td>
+            <td>(02) 332-7183</td>
+            <td>(02) 815-7418</td>
+          </tr>
+        </table>
+      </div>
+      
+      <h3>Cells that Span Many Rows</h3>
+      <p>To make a cell span more than one row, use the rowspan attribute:</p>
+      <div class="example">
+        <pre>
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Company Name:&lt;/th&gt;
+    &lt;td&gt;The Travel Club&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th rowspan="2"&gt;Telephone:&lt;/th&gt;
+    <td>(02) 332-7183</td>
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;(02) 815-7418&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+        
+        <h4>Result:</h4>
+        <table>
+          <tr>
+            <th>Company Name:</th>
+            <td>The Travel Club</td>
+          </tr>
+          <tr>
+            <th rowspan="2">Telephone:</th>
+            <td>(02) 332-7183</td>
+          </tr>
+          <tr>
+            <td>(02) 815-7418</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    
+    <section id="reference">
+      <h2>References</h2>
+      <ul>
+        <li>Jenkins, S. (2013). Web Design All-in-One for Dummies. John Wiley & Sons.</li>
+        <li>Parker, J. (2021). HTML for Beginners: A Complete Beginners Guide to Learn Html in 1 Hour and Master Your Web Designing.</li>
+        <li>W3Schools online web tutorials. (n.d.). https://www.w3schools.com/</li>
+        <li>Sklar, J. (2012). Web Design Principles.</li>
+        <li>Castro, E., & Hyslop, B. (2013). HTML and CSS: Visual QuickStart Guide. Peachpit Press.</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 CIP1101 Web Design Lecture</p>
+  </footer>
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ 
+          behavior: 'smooth' 
+        });
+      });
+    });
+  </script>
+</body>
+</html>

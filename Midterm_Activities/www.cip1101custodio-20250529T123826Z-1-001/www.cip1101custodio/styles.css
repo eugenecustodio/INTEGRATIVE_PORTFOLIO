@@ -1,0 +1,223 @@
+:root {
+    --primary-color: #2A2A2A;
+    --accent-color: #F1D6AB;
+    --text-color: #333;
+}
+
+body {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 2rem 0;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.slide {
+    display: none;
+    position: relative;
+    text-align: center;
+    padding: 2rem;
+    min-height: 60vh;
+}
+
+.slide.active {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: slideIn 0.5s ease;
+}
+
+
+.controls {
+    text-align: center;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.explanation {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: var(--accent-color);
+    border-radius: 15px;
+    max-width: 600px;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+}
+
+.explanation::before {
+    content: '✦';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+img {
+    transition: all 0.3s ease;
+    max-width: 100%;
+    height: auto;
+}s
+
+.border-2px { 
+    border: 2px solid var(--primary-color);
+}
+
+.size-5x5 { 
+    width: 5in;
+    height: 5in;
+}
+
+.rounded { 
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid #000;
+}
+
+.mixed-corners { 
+    border-radius: 30px 0 30px 0;
+    border: 2px solid #000;
+}
+
+.float-left {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: slideIn 0.5s ease;
+    float: left;
+}
+
+.hover-effect:hover { 
+    transform: scale(1.05) rotate(2deg);
+}
+
+.box-shadow {
+    box-shadow: 15px 15px 0 var(--accent-color);
+}
+
+.shape-circle {
+    shape-outside: circle(50%);
+    clip-path: circle(50%);
+    margin: 2rem;
+}
+
+.shape-polygon {
+    shape-outside: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}
+
+.mask-example{
+    mask-image: url(favorite_place.png);
+    mask-image: url(favorite_place.png);
+    mask-repeat: no-repeat;
+    mask-size: 30px;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--primary-color);
+    color: white;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+.progress-indicator {
+    text-align: center;
+    margin: 1rem 0;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.documentation-section {
+max-width: 1200px;
+margin: 3rem auto;
+padding: 2rem;
+background: white;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.code-display {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+margin-top: 2rem;
+}
+
+.code-column {
+background: #f8f9fa;
+border-radius: 12px;
+padding: 1.5rem;
+position: relative;
+}
+
+.code-column h3 {
+margin: 0 0 1rem 0;
+color: var(--primary-color);
+border-bottom: 2px solid var(--accent-color);
+padding-bottom: 0.5rem;
+}
+
+.code-content {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    tab-size: 2;
+    overflow-x: auto;
+}
+.mask1 {
+    -webkit-mask-image: url(output-onlinepngtools-removebg-preview.png);
+    -webkit-mask-image: url(output-onlinepngtools-removebg-preview.png);
+    mask-repeat: no-repeat;  
+    mask-size: cover; 
+    mask-position: center;
+    display: inline-block; 
+    mask-size: 1000px;
+}

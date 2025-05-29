@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* UNIVERSAL */
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            background-color: #e9e9e9;
+            overflow-x: hidden;
+        }
+
+        /* IMAGES */
+        .logo img {
+            width: 150px;
+        }
+
+        .profile img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* VERTICAL NAVIGATION BAR */
+        #verticalNav-container {
+            background-color: #ffffff;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 250px;
+            width: 100%;
+        }
+
+        .logo {
+            padding: 20px;
+            border-bottom: 2px solid #e9e9e9;
+        }
+
+        /* VERTICAL NAVIGATION BAR - CATEGORY CONTAINER */
+        .nav-link.menu-item:active,
+        .nav-link.menu-item:focus,
+        .nav-link.menu-item.show,
+        .nav-link.menu-item:visited {
+            color: black !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        /* VERTICAL NAVIGATION BAR - CATEGORY */
+        .nav {
+            padding: 20px;
+        }
+
+        .nav-link {
+            color: #000000;
+        }
+
+        .nav-link.menu-item:hover {
+            border-left: 3px solid #000000;
+            background-color: #e9e9e9;
+            color: #000000;
+        }
+        #verticalNav-container {
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .content-container {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        /* VERTICAL NAVIGATION BAR - SUBCATEGORY CONTAINER */
+        .dropdown-item:hover {
+            border-left: 3px solid #00008b;
+            background-color: #e9e9e9;
+            color: #000000;
+        }
+
+        .dropdown-item:active {
+            background-color: transparent;
+            color: #ffffff;
+        }
+
+        .dropdown-item:focus {
+            border-left: 3px solid #00008b;
+            color: #00008b;
+        }
+
+        /* CONTENT CONTAINER */
+        .container-fluid {
+            max-width: 1700px;
+            padding: 20px 35px;
+        }
+
+        /* CONTENT - DASHBOARD */
+        .dashboardHeader {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 35px;
+        }
+
+
+        /* CONTENT - RIGHTSIDE DASHBOARD */
+        .right-side {
+            max-width: 750px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* CONTENT - RIGHTSIDE DASHBOARD - SEARCHBAR */
+        .searchbar {
+            max-width: 350px;
+            min-width: 100px;
+            width: 100%;
+            height: 50px;
+            padding: 8px;
+            background-color: #e9e9e9;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .searchbar input {
+            max-width: 285px;
+            min-width: 85px;
+            width: 100%;
+            height: 100%;
+            background-color: #e9e9e9;
+            border: none;
+        }
+
+        .searchbar input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* CONTENT - RIGHTSIDE DASHBOARD - ICONS */
+        .icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* CONTENT - RIGHTSIDE DASHBOARD - PROFILE */
+        .profile {
+            min-width: 235px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile h4 {
+            margin: 0px;
+        }
+
+        /* CONTENT - SECOND CONTENT */
+        .second-content {
+            margin: 0px;
+            gap: 50px;
+        }
+
+        .second-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            gap: 5px;
+        }
+
+        .second-container svg {
+            width: 100px;
+            height: 100px;
+        }
+
+        .second-container span {
+            color: #00000096;
+        }
+
+        .second-container h1 {
+            margin: 0px;
+            padding: 0px;
+        }
+        /* CONTENT - THIRD CONTENT*/
+        .third-container {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table thead th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            color: #00000096;
+            font-weight: 600;
+        }
+
+        .table tbody tr {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            padding: 0.5em 0.75em;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .btn.rounded-pill {
+            border-radius: 50px;
+            transition: all 0.2s ease;
+        }
+
+        .btn.rounded-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .bg-impatient { background-color: #FF6B00 !important; } 
+        .bg-discharged { background-color: #28a745 !important; }
+        .bg-outpatient { background-color: #007BFF !important; } 
+        .bg-emergency { background-color: #DC3545 !important; } 
+        .bg-pending { background-color: #FFC107 !important; }
+
+        /*CONTENT - PANG APAT */
+
+        /* Calendar Container */
+        .calendar-grid {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Contain inner elements */
+        }
+
+        /* Header Grid */
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr)); /* Equal columns */
+            background: #f8f9fa;
+            padding: 12px 0;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        /* Header Cells */
+        .calendar-header .calendar-cell {
+            text-align: center;
+            font-weight: 600;
+            color: #6c757d;
+            padding: 8px 12px;
+        }
+
+        /* Body Grid */
+        .calendar-body {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr)); /* Equal columns */
+            grid-auto-rows: minmax(120px, auto); /* Consistent row heights */
+        }
+
+        /* Date Cells */
+        .calendar-cell {
+            position: relative;
+            padding: 12px;
+            min-height: 120px;
+            background: white;
+            border-right: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        /* Remove right border for last column */
+        .calendar-cell:nth-child(7n) {
+            border-right: none;
+        }
+
+        /* Remove bottom border for last row */
+        .calendar-body > .calendar-cell:nth-last-child(-n+7) {
+            border-bottom: none;
+        }
+
+        /* Cell Number */
+        .calendar-cell > .date-number {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        /* Event Badges */
+        .event-badge {
+            display: block;
+            background: rgba(0, 0, 139, 0.08);
+            color: #00008b;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 4px 0;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: transform 0.2s ease;
+        }
+
+        .event-badge:hover {
+            transform: translateX(4px);
+        }
+
+
+        .future-date:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Hover Effects */
+        .calendar-cell:hover {
+            background: #f8f9fa;
+            z-index: 2;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        
+    </style>
+<script defer data-domain="medicare-clinic.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script></head>
+
+<body>
+    <div id="verticalNav-container">
+        <div class="logo d-flex justify-content-center">
+            <img src="IMAGES/logo.png" alt="Hospital Logo">
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link menu-item" href="#">
+                    <i class="fas fa-home me-2"></i><strong>Dashboard</strong>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <!-- ICONS ARE IN <i> -->
+                <a class="nav-link menu-item d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" href="#patientsMenu" role="button" aria-expanded="false"
+                    aria-controls="patientsMenu">
+                    <span><i class="fas fa-user-injured me-2"></i><strong>Patients</strong></span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </a>
+                <!-- SUBCATEGORY -->
+                <div class="collapse ps-4" id="patientsMenu">
+                    <a class="dropdown-item menu-item" href="#">New Admissions</a>
+                    <a class="dropdown-item menu-item" href="#">Inpatients</a>
+                    <a class="dropdown-item menu-item" href="#">Outpatients</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-item d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" href="#appointmentsMenu" role="button" aria-expanded="false"
+                    aria-controls="appointmentsMenu">
+                    <span><i class="fas fa-calendar-check me-2"></i><strong>Appointments</strong></span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </a>
+                <!-- SUBCATEGORY -->
+                <div class="collapse ps-4" id="appointmentsMenu">
+                    <a class="dropdown-item menu-item" href="#">Upcoming</a>
+                    <a class="dropdown-item menu-item" href="#">Pending</a>
+                    <a class="dropdown-item menu-item" href="#">Cancelled</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-item d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" href="#recordsMenu" role="button" aria-expanded="false"
+                    aria-controls="recordsMenu">
+                    <span><i class="fas fa-file-medical me-2"></i><strong>Medical Records</strong></span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </a>
+                <!-- SUBCATEGORY -->
+                <div class="collapse ps-4" id="recordsMenu">
+                    <a class="dropdown-item menu-item" href="#">Lab Results</a>
+                    <a class="dropdown-item menu-item" href="#">Surgical</a>
+                    <a class="dropdown-item menu-item" href="#">Archived</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-item" href="#">
+                    <i class="fas fa-cog me-2"></i><strong>Settings</strong>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-item" href="#">
+                    <i class="fas fa-sign-out-alt me-2"></i><strong>Log Out</strong>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-container container-fluid d-flex flex-column gap-4">
+        <!-- CONTENT - DASHBOARD -->
+        <div class="dashboardHeader">
+            <h1><strong>Dashboard</strong></h1>
+            <div class="right-side">
+                <div class="searchbar">
+                    <svg max-width="35px" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="none"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM9 11.5C9 10.1193 10.1193 9 11.5 9C12.8807 9 14 10.1193 14 11.5C14 12.8807 12.8807 14 11.5 14C10.1193 14 9 12.8807 9 11.5ZM11.5 7C9.01472 7 7 9.01472 7 11.5C7 13.9853 9.01472 16 11.5 16C12.3805 16 13.202 15.7471 13.8957 15.31L15.2929 16.7071C15.6834 17.0976 16.3166 17.0976 16.7071 16.7071C17.0976 16.3166 17.0976 15.6834 16.7071 15.2929L15.31 13.8957C15.7471 13.202 16 12.3805 16 11.5C16 9.01472 13.9853 7 11.5 7Z" fill="#000000"></path></g></svg>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="icons">
+                    <svg fill="#000000" width="55px" height="55" viewBox="0 0 56.00 56.00" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.00056"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.56"></g><g id="SVGRepo_iconCarrier"><path d="M 27.9999 51.9062 C 41.0546 51.9062 51.9063 41.0547 51.9063 28.0000 C 51.9063 14.9219 41.0312 4.0938 27.9765 4.0938 C 14.8983 4.0938 4.0937 14.9219 4.0937 28.0000 C 4.0937 41.0547 14.9218 51.9062 27.9999 51.9062 Z M 27.9765 29.2422 C 27.5780 29.2422 27.1327 29.1016 26.6640 28.6328 L 16.3280 18.2969 C 16.6093 18.0625 17.3124 17.8281 18.2968 17.8281 L 37.6327 17.8281 C 38.6405 17.8281 39.3202 18.0625 39.6014 18.2969 L 29.2655 28.6328 C 28.8202 29.0781 28.3749 29.2422 27.9765 29.2422 Z M 23.3358 28.0000 L 15.2030 36.1328 C 15.0390 35.8516 14.9687 35.2656 14.9687 34.4453 L 14.9687 21.4609 C 14.9687 20.6406 15.0390 20.0781 15.1796 19.8438 Z M 32.5234 28.0000 L 40.7030 19.8438 C 40.8202 20.0781 40.8905 20.6406 40.8905 21.4609 L 40.8905 34.4453 C 40.8905 35.2656 40.8202 35.8516 40.6562 36.1328 Z M 27.9530 31.0938 C 28.7968 31.0938 29.4530 30.7891 30.3671 29.9453 L 31.1171 29.2422 L 39.5312 37.6562 C 39.2499 37.9140 38.5936 38.0781 37.6093 38.0781 L 18.2968 38.0781 C 17.3124 38.0781 16.6562 37.9140 16.3749 37.6562 L 24.7890 29.2422 L 25.5390 29.9453 C 26.4530 30.7891 27.1093 31.0938 27.9530 31.0938 Z"></path></g></svg>
+                    <svg fill="#000000" width="55px" height="55" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M 27.9999 51.9062 C 41.0546 51.9062 51.9063 41.0547 51.9063 28.0000 C 51.9063 14.9219 41.0312 4.0938 27.9765 4.0938 C 14.8983 4.0938 4.0937 14.9219 4.0937 28.0000 C 4.0937 41.0547 14.9218 51.9062 27.9999 51.9062 Z M 17.4765 36.0860 C 16.2577 36.0860 15.5546 35.4766 15.5546 34.5391 C 15.5546 33.2031 16.8905 32.0547 18.0390 30.8594 C 18.9062 29.8984 19.1171 28.0000 19.2109 26.4531 C 19.3280 21.4140 20.6874 17.9453 24.1796 16.6797 C 24.6952 14.9687 26.0780 13.6094 27.9999 13.6094 C 29.9218 13.6094 31.2812 14.9687 31.8202 16.6797 C 35.2890 17.9453 36.6718 21.4140 36.7655 26.4531 C 36.8593 28.0000 37.0468 29.8984 37.9609 30.8594 C 39.1093 32.0313 40.4452 33.2031 40.4452 34.5391 C 40.4452 35.4766 39.7187 36.0860 38.5234 36.0860 Z M 27.9999 41.5 C 25.7499 41.5 24.1327 39.9062 23.9687 37.9844 L 32.0312 37.9844 C 31.8671 39.9062 30.2265 41.5 27.9999 41.5 Z"></path></g></svg>
+                </div>
+                <div class="profile">
+                    <img src="IMAGES/profile.jpg" alt="User Profile">
+                    <div class="username">
+                        <h4><strong>John Doe</strong></h4>
+                        <span>Medical Practitioner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONTENT - SECOND CONTENTTT????? -->
+        <div class="second-content row">
+            <div class="second-container col d-flex flex-column justify-content-center align-items-center">
+                <svg width="125px" height="125px" viewBox="-6 -6 36.00 36.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)"><rect x="-6" y="-6" width="36.00" height="36.00" rx="18" fill="#e9e9e9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 7.16C17.94 7.15 17.87 7.15 17.81 7.16C16.43 7.11 15.33 5.98 15.33 4.58C15.33 3.15 16.48 2 17.91 2C19.34 2 20.49 3.16 20.49 4.58C20.48 5.98 19.38 7.11 18 7.16Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16.9699 14.44C18.3399 14.67 19.8499 14.43 20.9099 13.72C22.3199 12.78 22.3199 11.24 20.9099 10.3C19.8399 9.59004 18.3099 9.35003 16.9399 9.59003" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5.96998 7.16C6.02998 7.15 6.09998 7.15 6.15998 7.16C7.53998 7.11 8.63998 5.98 8.63998 4.58C8.63998 3.15 7.48998 2 6.05998 2C4.62998 2 3.47998 3.16 3.47998 4.58C3.48998 5.98 4.58998 7.11 5.96998 7.16Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6.99994 14.44C5.62994 14.67 4.11994 14.43 3.05994 13.72C1.64994 12.78 1.64994 11.24 3.05994 10.3C4.12994 9.59004 5.65994 9.35003 7.02994 9.59003" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 14.63C11.94 14.62 11.87 14.62 11.81 14.63C10.43 14.58 9.32996 13.45 9.32996 12.05C9.32996 10.62 10.48 9.46997 11.91 9.46997C13.34 9.46997 14.49 10.63 14.49 12.05C14.48 13.45 13.38 14.59 12 14.63Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9.08997 17.78C7.67997 18.72 7.67997 20.26 9.08997 21.2C10.69 22.27 13.31 22.27 14.91 21.2C16.32 20.26 16.32 18.72 14.91 17.78C13.32 16.72 10.69 16.72 9.08997 17.78Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                <span>Total Patients</span>
+                <h1><strong>600</strong></h1>
+            </div>
+
+            <div class="second-container col d-flex flex-column justify-content-center align-items-center">
+                <svg fill="#000000" width="100px" height="100px" viewBox="-3.2 -3.2 38.40 38.40" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-3.2" y="-3.2" width="38.40" height="38.40" rx="19.2" fill="#e9e9e9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.002,9l-2.003,0c-0.552,0 -1,0.448 -1,1c-0,0.552 0.448,1 1,1l1.996,0l-0.006,1.997c-0.002,0.552 0.445,1.001 0.997,1.003c0.552,0.002 1.001,-0.445 1.003,-0.997l0.006,-2.003l2.004,0c0.552,0 1,-0.448 1,-1c-0,-0.552 -0.448,-1 -1,-1l-1.997,0l0.006,-1.997c0.002,-0.552 -0.445,-1.001 -0.997,-1.003c-0.551,-0.002 -1.001,0.445 -1.003,0.997l-0.006,2.003Z"></path><path d="M5.992,23l0,2c0,0.552 0.448,1 1,1c0.552,0 1,-0.448 1,-1l0,-2l16,0l0,2c0,0.552 0.448,1 1,1c0.552,0 1,-0.448 1,-1l0,-2l1.008,-0c1.657,-0 3,-1.343 3,-3l0,-6c0,-0.552 -0.448,-1 -1,-1c-0.552,-0 -1,0.448 -1,1l0,3l-17,-0l0,-1.019c0,-0.795 -0.316,-1.558 -0.879,-2.121c-0.562,-0.562 -1.325,-0.879 -2.121,-0.879l-4,0l0,-1.481c-0,-0.552 -0.448,-1 -1,-1c-0.552,0 -1,0.448 -1,1l0,8.5c-0,0.796 0.316,1.559 0.879,2.121c0.562,0.563 1.325,0.879 2.121,0.879l0.992,0Zm22.008,-4l-24,-0l-0,1c-0,0.265 0.105,0.52 0.293,0.707c0.187,0.188 0.442,0.293 0.707,0.293c-0,0 22,-0 22,-0c0.552,-0 1,-0.448 1,-1l0,-1Zm-24,-4.019l-0,2.019l5,-0l0,-1.019c0,-0.265 -0.105,-0.519 -0.293,-0.707c-0.187,-0.187 -0.442,-0.293 -0.707,-0.293l-4,0Z"></path></g></svg>
+                <span>Available Rooms</span>
+                <h1><strong>25</strong></h1>
+            </div>
+
+            <div class="second-container col d-flex flex-column justify-content-center align-items-center">
+                <svg viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-2.4" y="-2.4" width="28.80" height="28.80" rx="14.4" fill="#e9e9e9">" strokeWidth="0"/&gt;</rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17 4.75H15.75V3.5C15.75 3.30109 15.671 3.11032 15.5303 2.96967C15.3897 2.82902 15.1989 2.75 15 2.75C14.8011 2.75 14.6103 2.82902 14.4697 2.96967C14.329 3.11032 14.25 3.30109 14.25 3.5V4.75H9.75V3.5C9.75 3.30109 9.67098 3.11032 9.53033 2.96967C9.38968 2.82902 9.19891 2.75 9 2.75C8.80109 2.75 8.61032 2.82902 8.46967 2.96967C8.32902 3.11032 8.25 3.30109 8.25 3.5V4.75H7C6.27065 4.75 5.57118 5.03973 5.05546 5.55546C4.53973 6.07118 4.25 6.77065 4.25 7.5V18.5C4.25 19.2293 4.53973 19.9288 5.05546 20.4445C5.57118 20.9603 6.27065 21.25 7 21.25H17C17.7293 21.25 18.4288 20.9603 18.9445 20.4445C19.4603 19.9288 19.75 19.2293 19.75 18.5V7.5C19.75 6.77065 19.4603 6.07118 18.9445 5.55546C18.4288 5.03973 17.7293 4.75 17 4.75ZM7 6.25H8.25V7.5C8.25 7.69891 8.32902 7.88968 8.46967 8.03033C8.61032 8.17098 8.80109 8.25 9 8.25C9.19891 8.25 9.38968 8.17098 9.53033 8.03033C9.67098 7.88968 9.75 7.69891 9.75 7.5V6.25H14.25V7.5C14.25 7.69891 14.329 7.88968 14.4697 8.03033C14.6103 8.17098 14.8011 8.25 15 8.25C15.1989 8.25 15.3897 8.17098 15.5303 8.03033C15.671 7.88968 15.75 7.69891 15.75 7.5V6.25H17C17.3315 6.25 17.6495 6.3817 17.8839 6.61612C18.1183 6.85054 18.25 7.16848 18.25 7.5V10.25H5.75V7.5C5.75 7.16848 5.8817 6.85054 6.11612 6.61612C6.35054 6.3817 6.66848 6.25 7 6.25ZM17 19.75H7C6.66848 19.75 6.35054 19.6183 6.11612 19.3839C5.8817 19.1495 5.75 18.8315 5.75 18.5V11.75H18.25V18.5C18.25 18.8315 18.1183 19.1495 17.8839 19.3839C17.6495 19.6183 17.3315 19.75 17 19.75Z" fill="#000000"></path> <path d="M14 15.25H12.75V14C12.75 13.8011 12.671 13.6103 12.5303 13.4697C12.3897 13.329 12.1989 13.25 12 13.25C11.8011 13.25 11.6103 13.329 11.4697 13.4697C11.329 13.6103 11.25 13.8011 11.25 14V15.25H10C9.80109 15.25 9.61032 15.329 9.46967 15.4697C9.32902 15.6103 9.25 15.8011 9.25 16C9.25 16.1989 9.32902 16.3897 9.46967 16.5303C9.61032 16.671 9.80109 16.75 10 16.75H11.25V18C11.25 18.1989 11.329 18.3897 11.4697 18.5303C11.6103 18.671 11.8011 18.75 12 18.75C12.1989 18.75 12.3897 18.671 12.5303 18.5303C12.671 18.3897 12.75 18.1989 12.75 18V16.75H14C14.1989 16.75 14.3897 16.671 14.5303 16.5303C14.671 16.3897 14.75 16.1989 14.75 16C14.75 15.8011 14.671 15.6103 14.5303 15.4697C14.3897 15.329 14.1989 15.25 14 15.25Z" fill="#000000"></path> </g></svg>
+                <span>Appointments Today</span>
+                <h1><strong>38</strong></h1>
+            </div>
+
+            <div class="second-container col d-flex flex-column justify-content-center align-items-center">
+                <svg viewBox="-6 -6 36.00 36.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-6" y="-6" width="36.00" height="36.00" rx="18" fill="#e9e9e9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 14C2 10.2288 2 8.34315 3.17157 7.17157C4.34315 6 6.22876 6 10 6H14C17.7712 6 19.6569 6 20.8284 7.17157C22 8.34315 22 10.2288 22 14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14Z" stroke="#000000" stroke-width="1.5"></path> <path d="M16 6C16 4.11438 16 3.17157 15.4142 2.58579C14.8284 2 13.8856 2 12 2C10.1144 2 9.17157 2 8.58579 2.58579C8 3.17157 8 4.11438 8 6" stroke="#000000" stroke-width="1.5"></path> <path d="M13.5 14H10.5M12 12.5V15.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="12" cy="14" r="4" stroke="#000000" stroke-width="1.5"></circle> </g></svg>
+                <span>Admitted Today</span>
+                <h1><strong>19</strong></h1>
+            </div>
+        </div>
+        <!-- HEHEHEH THIRD CONTENT!-->
+        <div class="third-content">
+            <div class="third-container bg-white rounded-15 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3><strong>Latest Patient Data</strong></h3>
+                <button class="btn btn-primary rounded-pill px-4" style="background-color: #00008b;">
+                    <i class="fas fa-times me-2"></i>New
+                </button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Patient ID</th>
+                                <th>Patient Name</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Date Admitted</th>
+                                <th>Attending Physician</th>
+                                <th>Ward</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>PT202401</td>
+                                <td>Juan Dela Cruz</td>
+                                <td>34</td>
+                                <td>Male</td>
+                                <td>2025-05-18</td>
+                                <td>Dr. Reyes</td>
+                                <td>Ward 3A</td>
+                                <td><span class="badge bg-impatient">Impatient</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>PT202402</td>
+                                <td>Maria Santos</td>
+                                <td>27</td>
+                                <td>Female</td>
+                                <td>2025-05-19</td>
+                                <td>Dr. Gomez</td>
+                                <td>N/A</td>
+                                <td><span class="badge bg-outpatient">Outpatient</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td>PT202403</td>
+                                <td>Roberto Villanueva</td>
+                                <td>45</td>
+                                <td>Male</td>
+                                <td>2025-05-17</td>
+                                <td>Dr. Lim</td>
+                                <td>Ward 1C</td>
+                                <td><span class="badge bg-discharged">Discharged</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>4</td>
+                                <td>PT202404</td>
+                                <td>Angela Ramirez</td>
+                                <td>60</td>
+                                <td>Female</td>
+                                <td>2025-05-15</td>
+                                <td>Dr. Cruz</td>
+                                <td>Ward 2B</td>
+                                <td><span class="badge bg-impatient">Impatient</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>5</td>
+                                <td>PT202405</td>
+                                <td>Carlo Mendoza</td>
+                                <td>34</td>
+                                <td>Male</td>
+                                <td>2025-05-13</td>
+                                <td>Dr. Reyes</td>
+                                <td>ER</td>
+                                <td><span class="badge bg-emergency">Emergency</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>6</td>
+                                <td>PT202406</td>
+                                <td>Sophia Navarro</td>
+                                <td>30</td>
+                                <td>Female</td>
+                                <td>2025-05-18</td>
+                                <td>Dr. Lim</td>
+                                <td>Ward 1B</td>
+                                <td><span class="badge bg-impatient">Impatient</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>7</td>
+                                <td>PT202407</td>
+                                <td>Daniel Chua</td>
+                                <td>51</td>
+                                <td>Male</td>
+                                <td>2025-05-19</td>
+                                <td>Dr. Gomez</td>
+                                <td>Ward 3A</td>
+                                <td><span class="badge bg-discharged">Discharged</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>8</td>
+                                <td>PT202408</td>
+                                <td>Nathan Rivera</td>
+                                <td>19</td>
+                                <td>Male</td>
+                                <td>2025-05-16</td>
+                                <td>Dr. Santos</td>
+                                <td>Triage</td>
+                                <td><span class="badge bg-pending">Pending</span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar-container">
+            <div class="third-container bg-white rounded-15 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3><strong>Medical Calendar</strong></h3>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeMonth(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="mx-3" id="currentMonth">May 2025</span>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeMonth(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="btn btn-primary rounded-pill px-4 ms-2" style="background-color: #00008b;" 
+                                data-bs-toggle="modal" data-bs-target="#addEventModal">
+                            <i class="fas fa-plus me-2"></i>Add Event
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid">
+                    <div class="calendar-header">
+                        <div class="calendar-cell">Sun</div>
+                        <div class="calendar-cell">Mon</div>
+                        <div class="calendar-cell">Tue</div>
+                        <div class="calendar-cell">Wed</div>
+                        <div class="calendar-cell">Thu</div>
+                        <div class="calendar-cell">Fri</div>
+                        <div class="calendar-cell">Sat</div>
+                    </div>
+                    <div class="calendar-body" id="calendarBody">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="addEventModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New Event</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="date" class="form-control mb-3" id="eventDate">
+                        <input type="text" class="form-control mb-3" id="eventTitle" placeholder="Event title" required>
+                        <select class="form-select mb-3" id="eventColor">
+                            <option value="#00008b">Blue (Default)</option>
+                            <option value="#28a745">Green</option>
+                            <option value="#dc3545">Red</option>
+                            <option value="#ffc107">Yellow</option>
+                            <option value="#6f42c1">Purple</option>
+                            <option value="custom">Custom Color</option>
+                        </select>
+                        <input type="color" class="form-control mb-3 d-none" id="customColor">
+                        <textarea class="form-control" id="eventDescription" placeholder="Event description" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" style="background-color: #00008b;" onclick="addEvent()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="eventDetailsModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eventDetailTitle"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Date:</strong> <span id="eventDetailDate"></span></p>
+                        <p><strong>Description:</strong> <span id="eventDetailDescription"></span></p>
+                        <p><strong>Color:</strong> <span id="eventDetailColor" style="display: inline-block; width: 15px; height: 15px; border-radius: 50%;"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            const calendarData = {
+                currentDate: new Date(),
+                events: []
+            };
+        
+            function updateMonthDisplay() {
+                const options = { month: 'long', year: 'numeric' };
+                document.getElementById('currentMonth').textContent = 
+                    calendarData.currentDate.toLocaleDateString('en-US', options);
+            }
+        
+            function generateCalendar() {
+                const calendarBody = document.getElementById('calendarBody');
+                calendarBody.innerHTML = '';
+                
+                const startDate = new Date(calendarData.currentDate);
+                startDate.setDate(1);
+                
+                for(let i = 0; i < startDate.getDay(); i++) {
+                    calendarBody.innerHTML += `<div class="calendar-cell"></div>`;
+                }
+        
+                while(startDate.getMonth() === calendarData.currentDate.getMonth()) {
+                    const dayEvents = calendarData.events.filter(e => 
+                        e.date.toDateString() === startDate.toDateString()
+                    );
+                    
+                    const cellDate = new Date(startDate);
+                    const isFuture = cellDate > new Date();
+                    
+                    calendarBody.innerHTML += `
+                        <div class="calendar-cell ${isFuture ? 'future-date' : ''}">
+                            <div class="fw-bold">${startDate.getDate()}</div>
+                            ${dayEvents.map(e => `
+                                <div class="event-badge" 
+                                     style="background: ${e.color}20; color: ${e.color}"
+                                     onclick="showEventDetails('${e.title}', '${e.description}', '${e.date}', '${e.color}')">
+                                    <i class="fas fa-circle me-1" style="font-size: 6px; color: ${e.color}"></i>
+                                    ${e.title}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    
+                    startDate.setDate(startDate.getDate() + 1);
+                }
+                updateMonthDisplay();
+            }
+        
+            function changeMonth(offset) {
+                calendarData.currentDate.setMonth(calendarData.currentDate.getMonth() + offset);
+                generateCalendar();
+            }
+        
+            function addEvent() {
+                const title = document.getElementById('eventTitle').value;
+                const description = document.getElementById('eventDescription').value;
+                const eventDate = new Date(document.getElementById('eventDate').value);
+                const colorSelect = document.getElementById('eventColor');
+                const customColor = document.getElementById('customColor').value;
+                
+                let color = colorSelect.value;
+                if(color === 'custom') color = customColor;
+        
+                calendarData.events.push({
+                    title: title.trim(),
+                    description: description.trim(),
+                    color,
+                    date: eventDate
+                });
+                
+                document.getElementById('eventTitle').value = '';
+                document.getElementById('eventDescription').value = '';
+                document.getElementById('eventDate').value = '';
+                
+                $('#addEventModal').modal('hide');
+                generateCalendar();
+            }
+        
+            function showEventDetails(title, description, dateString, color) {
+                const date = new Date(dateString);
+                document.getElementById('eventDetailTitle').textContent = title;
+                document.getElementById('eventDetailDescription').textContent = description;
+                document.getElementById('eventDetailDate').textContent = 
+                    date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                document.getElementById('eventDetailColor').style.backgroundColor = color;
+                $('#eventDetailsModal').modal('show');
+            }
+        
+            document.getElementById('eventColor').addEventListener('change', function() {
+                document.getElementById('customColor').classList.toggle('d-none', this.value !== 'custom');
+            });
+        
+            document.getElementById('eventDate').min = new Date().toISOString().split('T')[0];
+        
+            generateCalendar();
+        </script>
+</body>
+
+</html>

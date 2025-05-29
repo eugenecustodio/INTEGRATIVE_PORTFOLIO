@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 7: Bootstrap Framework</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #858796;
+            --success-color: #1cc88a;
+            --info-color: #36b9cc;
+            --warning-color: #f6c23e;
+            --danger-color: #e74a3b;
+            --light-color: #f8f9fc;
+            --dark-color: #5a5c69;
+        }
+        
+        body {
+            background-color: #f8f9fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #5a5c69;
+            padding-top: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            padding: 25px 30px;
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid #eaecf4;
+            font-weight: 700;
+            padding: 15px 20px;
+            border-radius: 10px 10px 0 0 !important;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid #e3e6f0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .highlight {
+            background-color: #f8f9fc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .grid-demo .row {
+            margin-bottom: 15px;
+        }
+        
+        .grid-demo [class^="col"] {
+            background-color: rgba(78, 115, 223, 0.15);
+            border: 1px solid rgba(78, 115, 223, 0.3);
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        
+        .color-box {
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container-demo {
+            background-color: #e3e6f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px dashed #858796;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li::before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #e3e6f0;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #4e73df;
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fc;
+        }
+        
+        .breakpoint-table {
+            font-size: 0.9rem;
+        }
+        
+        .breakpoint-table th {
+            background-color: #5a5c69;
+        }
+        
+        .footer {
+            background-color: white;
+            border-top: 1px solid #eaecf4;
+            padding: 25px 0;
+            margin-top: 40px;
+            text-align: center;
+            color: #6e707e;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #5a5c69;
+            font-weight: 600;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                text-align: center;
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card-body {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>Lecture 7: Bootstrap Framework</h1>
+            <p class="lead">CP1101 Integrative Programming and Technologies 1</p>
+        </div>
+        
+        <ul class="nav nav-tabs mb-4" id="lectureTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">Overview</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="layout-tab" data-bs-toggle="tab" data-bs-target="#layout" type="button" role="tab">Layout & Grid</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="colors-tab" data-bs-toggle="tab" data-bs-target="#colors" type="button" role="tab">Colors</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="usage-tab" data-bs-toggle="tab" data-bs-target="#usage" type="button" role="tab">When to Use</button>
+            </li>
+        </ul>
+        
+        <div class="tab-content" id="lectureTabsContent">
+            <!-- Overview Tab -->
+            <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">What is Bootstrap?</div>
+                            <div class="card-body">
+                                <p>Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS and JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.</p>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Key Features</h5>
+                                                <ul class="feature-list">
+                                                    <li>Responsive grid system</li>
+                                                    <li>Extensive prebuilt components</li>
+                                                    <li>Powerful plugins built on jQuery</li>
+                                                    <li>Sass variables and mixins</li>
+                                                    <li>Responsive utility classes</li>
+                                                    <li>Mobile-first approach</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h5 class="card-title">History</h5>
+                                                <p>Bootstrap was developed by Mark Otto and Jacob Thornton at Twitter as a framework to encourage consistency across internal tools.</p>
+                                                <p>First released as an open-source project on August 19, 2011.</p>
+                                                <p class="mb-0"><strong>Current version:</strong> Bootstrap 5 (released May 2021)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">Why Use Bootstrap?</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <h5><i class="fas fa-check-circle text-success me-2"></i> Advantages</h5>
+                                        <ul class="feature-list">
+                                            <li>Speeds up development time</li>
+                                            <li>Responsive by design</li>
+                                            <li>Consistent design across browsers</li>
+                                            <li>Customizable with Sass</li>
+                                            <li>Extensive documentation</li>
+                                            <li>Large community support</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5><i class="fas fa-exclamation-circle text-danger me-2"></i> Considerations</h5>
+                                        <ul>
+                                            <li>Can lead to similar-looking websites</li>
+                                            <li>Requires learning framework conventions</li>
+                                            <li>File size overhead if not customized</li>
+                                            <li>May require overriding styles</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">Getting Started</div>
+                            <div class="card-body">
+                                <h5>Installation Methods</h5>
+                                
+                                <div class="mb-4">
+                                    <h6>CDN (Recommended for learning)</h6>
+                                    <div class="highlight">
+                                        <pre><code>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h6>Download</h6>
+                                    <p>Download compiled CSS and JS from <a href="https://getbootstrap.com/" target="_blank">getbootstrap.com</a></p>
+                                </div>
+                                
+                                <div>
+                                    <h6>Package Managers</h6>
+                                    <p>Install via npm or yarn:</p>
+                                    <div class="highlight">
+                                        <pre><code>npm install bootstrap
+yarn add bootstrap</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">Basic Template</div>
+                            <div class="card-body">
+                                <div class="highlight">
+                                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Bootstrap Template&lt;/title&gt;
+  &lt;link href="bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Hello, Bootstrap!&lt;/h1&gt;
+    &lt;button class="btn btn-primary"&gt;Click Me&lt;/button&gt;
+  &lt;/div&gt;
+  
+  &lt;script src="bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Layout & Grid Tab -->
+            <div class="tab-pane fade" id="layout" role="tabpanel">
+                <h2 class="section-title">Bootstrap Layout System</h2>
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">Containers</div>
+                            <div class="card-body">
+                                <p>Containers are the most basic layout element in Bootstrap and are required when using the grid system.</p>
+                                
+                                <div class="mb-4">
+                                    <h5>.container</h5>
+                                    <p>Responsive fixed-width container with max-width at each breakpoint.</p>
+                                    <div class="container-demo">
+                                        <div class="container border p-3 bg-light">
+                                            <p>Fixed-width container</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h5>.container-fluid</h5>
+                                    <p>Full-width container spanning the entire viewport width.</p>
+                                    <div class="container-demo">
+                                        <div class="container-fluid border p-3 bg-light">
+                                            <p>Full-width container</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h5 class="mt-4">Container Breakpoints</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered breakpoint-table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Container</th>
+                                                <th>Extra small<br>&lt;576px</th>
+                                                <th>Small<br>≥576px</th>
+                                                <th>Medium<br>≥768px</th>
+                                                <th>Large<br>≥992px</th>
+                                                <th>X-Large<br>≥1200px</th>
+                                                <th>XX-Large<br>≥1400px</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>.container</td>
+                                                <td>100%</td>
+                                                <td>540px</td>
+                                                <td>720px</td>
+                                                <td>960px</td>
+                                                <td>1140px</td>
+                                                <td>1320px</td>
+                                            </tr>
+                                            <tr>
+                                                <td>.container-sm</td>
+                                                <td>100%</td>
+                                                <td>540px</td>
+                                                <td>720px</td>
+                                                <td>960px</td>
+                                                <td>1140px</td>
+                                                <td>1320px</td>
+                                            </tr>
+                                            <tr>
+                                                <td>.container-md</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>720px</td>
+                                                <td>960px</td>
+                                                <td>1140px</td>
+                                                <td>1320px</td>
+                                            </tr>
+                                            <tr>
+                                                <td>.container-lg</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>960px</td>
+                                                <td>1140px</td>
+                                                <td>1320px</td>
+                                            </tr>
+                                            <tr>
+                                                <td>.container-xl</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>1140px</td>
+                                                <td>1320px</td>
+                                            </tr>
+                                            <tr>
+                                                <td>.container-xxl</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>1320px</td>
+                                            </tr>
+                                            <tr>
+                                                <td>.container-fluid</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                                <td>100%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">Grid System</div>
+                            <div class="card-body">
+                                <p>Bootstrap's grid system uses a series of containers, rows, and columns to layout and align content. It's built with flexbox and is fully responsive.</p>
+                                
+                                <h5>Grid Classes</h5>
+                                <p>The grid system has six responsive breakpoints:</p>
+                                <ul>
+                                    <li><strong>.col-</strong> - Extra small devices (portrait phones, &lt;576px)</li>
+                                    <li><strong>.col-sm-</strong> - Small devices (landscape phones, ≥576px)</li>
+                                    <li><strong>.col-md-</strong> - Medium devices (tablets, ≥768px)</li>
+                                    <li><strong>.col-lg-</strong> - Large devices (desktops, ≥992px)</li>
+                                    <li><strong>.col-xl-</strong> - Extra large devices (large desktops, ≥1200px)</li>
+                                    <li><strong>.col-xxl-</strong> - Extra extra large devices (≥1400px)</li>
+                                </ul>
+                                
+                                <h5 class="mt-4">Grid Examples</h5>
+                                <div class="grid-demo">
+                                    <h6>Three equal columns</h6>
+                                    <div class="row">
+                                        <div class="col">.col</div>
+                                        <div class="col">.col</div>
+                                        <div class="col">.col</div>
+                                    </div>
+                                    
+                                    <h6 class="mt-4">Two columns with widths</h6>
+                                    <div class="row">
+                                        <div class="col-4">.col-4</div>
+                                        <div class="col-8">.col-8</div>
+                                    </div>
+                                    
+                                    <h6 class="mt-4">Responsive columns</h6>
+                                    <div class="row">
+                                        <div class="col-sm-3">.col-sm-3</div>
+                                        <div class="col-sm-3">.col-sm-3</div>
+                                        <div class="col-sm-3">.col-sm-3</div>
+                                        <div class="col-sm-3">.col-sm-3</div>
+                                    </div>
+                                    
+                                    <h6 class="mt-4">Mixed width columns</h6>
+                                    <div class="row">
+                                        <div class="col-md-4">.col-md-4</div>
+                                        <div class="col-md-8">.col-md-8</div>
+                                    </div>
+                                    
+                                    <h6 class="mt-4">Multiple breakpoints</h6>
+                                    <div class="row">
+                                        <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                                        <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                                        <div class="col-12 col-md-4">.col-12 .col-md-4</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Colors Tab -->
+            <div class="tab-pane fade" id="colors" role="tabpanel">
+                <h2 class="section-title">Bootstrap Color System</h2>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Text Colors</div>
+                            <div class="card-body">
+                                <p>Bootstrap includes contextual text classes for coloring text:</p>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="color-box bg-primary">.text-primary</div>
+                                        <div class="color-box bg-secondary">.text-secondary</div>
+                                        <div class="color-box bg-success">.text-success</div>
+                                        <div class="color-box bg-danger">.text-danger</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="color-box bg-warning">.text-warning</div>
+                                        <div class="color-box bg-info">.text-info</div>
+                                        <div class="color-box bg-light text-dark">.text-light</div>
+                                        <div class="color-box bg-dark">.text-dark</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="highlight mt-4">
+                                    <pre><code>&lt;p class="text-primary"&gt;Primary text&lt;/p&gt;
+&lt;p class="text-success"&gt;Success text&lt;/p&gt;
+&lt;p class="text-danger"&gt;Danger text&lt;/p&gt;
+&lt;p class="text-warning"&gt;Warning text&lt;/p&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Background Colors</div>
+                            <div class="card-body">
+                                <p>Similar to text colors, you can set background colors:</p>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="color-box bg-primary">.bg-primary</div>
+                                        <div class="color-box bg-secondary">.bg-secondary</div>
+                                        <div class="color-box bg-success">.bg-success</div>
+                                        <div class="color-box bg-danger">.bg-danger</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="color-box bg-warning">.bg-warning</div>
+                                        <div class="color-box bg-info">.bg-info</div>
+                                        <div class="color-box bg-light text-dark">.bg-light</div>
+                                        <div class="color-box bg-dark">.bg-dark</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="highlight mt-4">
+                                    <pre><code>&lt;div class="bg-primary"&gt;Primary background&lt;/div&gt;
+&lt;div class="bg-success"&gt;Success background&lt;/div&gt;
+&lt;div class="bg-danger"&gt;Danger background&lt;/div&gt;
+&lt;div class="bg-warning"&gt;Warning background&lt;/div&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-header">Color Utilities</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Opacity Text Colors</h5>
+                                <p>Add 50% opacity for black or white text:</p>
+                                
+                                <div class="p-3 mb-3 bg-white">
+                                    <p class="text-black-50 mb-0">Black text with 50% opacity on white background</p>
+                                </div>
+                                
+                                <div class="p-3 mb-4 bg-dark">
+                                    <p class="text-white-50 mb-0">White text with 50% opacity on black background</p>
+                                </div>
+                                
+                                <div class="highlight">
+                                    <pre><code>&lt;p class="text-black-50"&gt;...&lt;/p&gt;
+&lt;p class="text-white-50"&gt;...&lt;/p&gt;</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h5>Contextual Link Colors</h5>
+                                <p>Contextual classes can be used on links:</p>
+                                
+                                <div class="mb-3">
+                                    <a href="#" class="text-muted me-2">Muted link</a>
+                                    <a href="#" class="text-primary me-2">Primary link</a>
+                                    <a href="#" class="text-success me-2">Success link</a>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <a href="#" class="text-info me-2">Info link</a>
+                                    <a href="#" class="text-warning me-2">Warning link</a>
+                                    <a href="#" class="text-danger me-2">Danger link</a>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <a href="#" class="text-secondary me-2">Secondary link</a>
+                                    <a href="#" class="text-dark me-2">Dark link</a>
+                                    <a href="#" class="text-body">Body/black link</a>
+                                </div>
+                                
+                                <div class="highlight">
+                                    <pre><code>&lt;a href="#" class="text-primary"&gt;Primary link&lt;/a&gt;
+&lt;a href="#" class="text-success"&gt;Success link&lt;/a&gt;
+&lt;a href="#" class="text-danger"&gt;Danger link&lt;/a&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- When to Use Tab -->
+            <div class="tab-pane fade" id="usage" role="tabpanel">
+                <h2 class="section-title">When to Use Bootstrap</h2>
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">Consider Using Bootstrap When...</div>
+                            <div class="card-body">
+                                <ul class="feature-list">
+                                    <li><strong>Time is limited:</strong> Bootstrap accelerates development with pre-built components</li>
+                                    <li><strong>Design fits Bootstrap patterns:</strong> When your design aligns with Bootstrap's component library</li>
+                                    <li><strong>You control the HTML:</strong> When you have full control over the markup</li>
+                                    <li><strong>Need multiple components:</strong> When you need many UI components (buttons, forms, navbars, etc.)</li>
+                                    <li><strong>Limited CSS experience:</strong> When you need cross-browser consistency without deep CSS knowledge</li>
+                                    <li><strong>Rapid prototyping:</strong> For quickly creating prototypes and MVPs</li>
+                                    <li><strong>Team collaboration:</strong> When working with teams to ensure consistent UI</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-4">
+                            <div class="card-header">Bootstrap Package Includes</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Scaffolding</h5>
+                                                <p>Basic structure with Grid System, link styles, and background</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">CSS</h5>
+                                                <p>Global CSS settings, fundamental HTML elements styled with extensible classes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Components</h5>
+                                                <p>Over a dozen reusable components (dropdowns, navigation, alerts, etc.)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">JavaScript Plugins</h5>
+                                                <p>Custom jQuery plugins for interactive components</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">Consider Custom CSS When...</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>Reasonable deadline:</strong> When you have time to write custom CSS</li>
+                                    <li><strong>Unique design:</strong> When your design doesn't fit Bootstrap patterns</li>
+                                    <li><strong>CMS limitations:</strong> When working with CMS that restricts HTML modifications</li>
+                                    <li><strong>Minimal needs:</strong> When you only need one or two Bootstrap features</li>
+                                    <li><strong>CSS expertise:</strong> When you have experience writing custom CSS</li>
+                                    <li><strong>Performance concerns:</strong> When minimizing file size is critical</li>
+                                    <li><strong>Brand uniqueness:</strong> When you need a completely distinctive look and feel</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-4">
+                            <div class="card-header">Comparison: Bootstrap vs Custom CSS</div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="comparison-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Factor</th>
+                                                <th>Bootstrap</th>
+                                                <th>Custom CSS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Development Speed</td>
+                                                <td>Fast (pre-built components)</td>
+                                                <td>Slower (build from scratch)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Learning Curve</td>
+                                                <td>Moderate (learn framework)</td>
+                                                <td>Steeper (master CSS)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Design Consistency</td>
+                                                <td>High (built-in consistency)</td>
+                                                <td>Variable (depends on skill)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Customization</td>
+                                                <td>Requires overriding</td>
+                                                <td>Complete freedom</td>
+                                            </tr>
+                                            <tr>
+                                                <td>File Size</td>
+                                                <td>Larger (unless customized)</td>
+                                                <td>Smaller (only what's needed)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Browser Compatibility</td>
+                                                <td>Excellent (thoroughly tested)</td>
+                                                <td>Variable (depends on testing)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Community Support</td>
+                                                <td>Large community</td>
+                                                <td>General CSS community</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p class="mb-2"><strong>References:</strong></p>
+            <p class="mb-1">Carey, P. (2018). New perspectives on HTML5, CSS3, and Javascript. Australia: Cengage Learning</p>
+            <p class="mb-1">Jenkins, S. (2013). Web Design All-in-One for Dummies. John Wiley & Sons.</p>
+            <p class="mb-1">W3Schools online web tutorials. (n.d.). https://www.w3schools.com/</p>
+            <p class="mb-1">Sklar, J. (2012). Web Design Principles.</p>
+            <p class="mb-1">Plumley, G. (2011). Website design and development: 100 questions to ask before building a website. Indianapolis, IN: Wiley Pub.</p>
+            <p class="mb-0">Contributors, M. O. J. T. a. B. (n.d.). Introduction. https://getbootstrap.com/docs/5.0/getting-started/introduction/</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Activate the first tab
+        const firstTab = new bootstrap.Tab(document.getElementById('overview-tab'));
+        firstTab.show();
+        
+        // Add active class to nav items
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-link').forEach(el => {
+                    el.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

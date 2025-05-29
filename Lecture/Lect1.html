@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIP1101 Lecture 1: Introduction to Web Design</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; }
+    header { background: #2c3e50; color: white; padding: 1rem 2rem; }
+    header h1 { margin: 0; font-size: 2rem; }
+    nav { background: #ecf0f1; padding: 1rem; position: sticky; top: 0; }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
+    nav li { margin-right: 1rem; }
+    nav a { text-decoration: none; color: #2980b9; }
+    nav a:hover { text-decoration: underline; }
+    main { padding: 2rem; max-width: 800px; margin: auto; }
+    section { margin-bottom: 2rem; }
+    h2 { border-bottom: 2px solid #bdc3c7; padding-bottom: 0.5rem; }
+    h3 { color: #2980b9; margin-top: 1.5rem; }
+    .grid-demo { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0.5rem; margin: 1rem 0; }
+    .grid-demo div { background: #bdc3c7; padding: 0.5rem; text-align: center; }
+    .callout { background: #f9edbe; border-left: 4px solid #f0c36d; padding: 1rem; margin: 1rem 0; }
+    .breadcrumbs, .cta { background: #ecf0f1; padding: 1rem; margin: 1rem 0; border-radius: 0.25rem; }
+    .btn { background: #e74c3c; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.25rem; cursor: pointer; }
+    .btn:hover { background: #c0392b; }
+    footer { background: #2c3e50; color: white; text-align: center; padding: 1rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CIP1101 Lecture 1: Introduction to Web Design</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#evolution">Evolution of Web Design</a></li>
+      <li><a href="#web2">Web 2.0 & JavaScript</a></li>
+      <li><a href="#responsive">Responsive Design</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#usability">Usability & Accessibility</a></li>
+      <li><a href="#consistency">Consistency</a></li>
+      <li><a href="#reference">References</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="evolution">
+      <h2>Evolution of Web Design</h2>
+      <h3>First Website (1990)</h3>
+      <p>Sir Tim Berners-Lee created the very first website in 1990. It was text-based with a few hyperlinks to explain the World Wide Web concept. Early HTML relied on simple tags like <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, and <code>&lt;a&gt;</code>.</p>
+      <h3>W3C Formation (1994)</h3>
+      <p>In 1994, the World Wide Web Consortium (W3C) was established to standardize web technologies and prevent fragmentation. It continues to publish specifications, including HTML5 and CSS3.</p>
+      <div class="callout">
+        <strong>Note:</strong> The W3C&rsquo;s mission is to maintain an open, interoperable web for everyone.
+      </div>
+      <h3>Table-Based Layouts (Late 90s)</h3>
+      <p>Designers used <code>&lt;table&gt;</code> elements and spacer GIFs to create multi-column layouts, often slicing background images to achieve the desired visual effect.</p>
+      <h3>Introduction of Flash (1996)</h3>
+      <p>Macromedia Flash (later Adobe Flash) enabled animations, custom fonts, and interactive content. Though powerful, Flash was heavy and SEO-unfriendly; its decline began after Apple dropped support in iOS (2010).</p>
+      <h3>Rise of CSS (2000s)</h3>
+      <p>Cascading Style Sheets separated presentation from content. CSS improved maintainability, load times, and SEO by enabling semantic HTML and external style rules.</p>
+      <p><em>Downside:</em> Cross-browser inconsistencies made some CSS features challenging to implement uniformly.</p>
+    </section>
+    <section id="web2">
+      <h2>Web 2.0 & The Rise of JavaScript</h2>
+      <p>JavaScript added intelligence to web pages, allowing dynamic interfaces, asynchronous data loading, and richer UX. Designers emphasized usability, typography, and SEO-friendly practices like keyword optimization and tagging.</p>
+      <h3>Mobile Emergence</h3>
+      <p>The iPhone&rsquo;s 2007 release sparked mobile browsing growth. By 2016, mobile and tablet usage surpassed desktop globally.</p>
+    </section>
+    <section id="responsive">
+      <h2>Responsive Web Design</h2>
+      <h3>Fluid Grids & Media Queries</h3>
+      <p>Ethan Marcotte (2011) introduced responsive design using flexible grids and CSS3 media queries. Designers adopted 12-column systems, adjusting layout across devices.</p>
+      <div class="grid-demo">
+        <!-- 12-column grid demo -->
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+      </div>
+      <h3>Flat & Swiss Style</h3>
+      <p>Flat design removed textures, gradients, and shadows, drawing inspiration from Swiss International Typographic Style—grids, sans-serif typefaces, and asymmetry.</p>
+    </section>
+    <section id="components">
+      <h2>Web Design Components</h2>
+      <h3>Grid Systems</h3>
+      <p>Grids organize content, maintain proportions, and improve readability. They require practice to balance creativity and structure.</p>
+      <h3>Call to Action (CTA)</h3>
+      <div class="cta">
+        <p><strong>Call to Action:</strong> A designed element prompting users to take a desired action (e.g., &quot;Sign Up Now&quot;).</p>
+      </div>
+      <h3>Breadcrumbs</h3>
+      <div class="breadcrumbs">Home &rsaquo; Category &rsaquo; Subpage</div>
+      <h3>Search Bar</h3>
+      <p>Essential for content-heavy sites. Place prominently (top-center or top-right) and ensure visibility.</p>
+      <h3>Icons</h3>
+      <p>Icons facilitate quick comprehension and visual interest. Use directional arrows for navigation cues.</p>
+      <h3>Modals</h3>
+      <p>Modal boxes overlay content without page reload, ideal for alerts, forms, and confirmations.</p>
+    </section>
+    <section id="typography">
+      <h2>Typography</h2>
+      <p>Font choice influences brand perception. Use serif for elegance, sans-serif for modern clarity, and scripts sparingly for headlines. Limit to 1–3 typefaces per design.</p>
+      <p>Embed custom fonts via <code>@font-face</code> or link services like Google Fonts.</p>
+    </section>
+    <section id="colors">
+      <h2>Color Theory</h2>
+      <p>Color affects mood and behavior. Example associations:</p>
+      <ul>
+        <li><strong>Red:</strong> Passion, action</li>
+        <li><strong>Blue:</strong> Trust, intelligence</li>
+        <li><strong>Green:</strong> Health, innovation</li>
+        <li><strong>Yellow/Orange:</strong> Energy, caution</li>
+      </ul>
+    </section>
+    <section id="usability">
+      <h2>Usability & Accessibility</h2>
+      <ul>
+        <li><strong>Learnability:</strong> Intuitive onboarding for new users</li>
+        <li><strong>Efficiency:</strong> Quick completion of repeat tasks</li>
+        <li><strong>Memorability:</strong> Retention after time away</li>
+        <li><strong>Error Tolerance:</strong> Easy recovery</li>
+        <li><strong>Satisfaction:</strong> Pleasant experience</li>
+      </ul>
+      <p>Optimize load times (<3s), fix broken links, ensure responsive layouts, and maintain high uptime.</p>
+    </section>
+    <section id="consistency">
+      <h2>Consistency</h2>
+      <p>Uniform design, content tone, and interactions reduce cognitive load. Consistent placement (e.g., back button) and visual identity reinforce user familiarity.</p>
+    </section>
+    <section id="reference">
+      <h2>References</h2>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 CIP1101 Web Design Lecture</p>
+  </footer>
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

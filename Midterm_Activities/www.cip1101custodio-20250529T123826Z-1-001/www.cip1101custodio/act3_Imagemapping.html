@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        CIP 1101 MIDTERM ACTIVITY 3 IMAGE and IMAGE MAPS (GROUP)        </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Mga Slides, Kung ano magpapakita dun sa Slideshow-->
+        <!-- Bawat isa, merong  data-explan, data-doc-explan for  further elaborate, data-html for the code, data.css for the css.-->
+        <div class="slide active" 
+             data-explan="Image with 2px border and alt text"
+             data-doc-explan="N/A"
+             data-html="&lt;img src=&quot;memes.jpg&quot; alt=&quot;Bordered image&quot; class=&quot;border-2px&quot;&gt;"
+             data-css=".border-2px {
+    border: 2px solid var(--primary-color);
+}">
+            <img src="memes.jpg" alt="Bordered image" class="border-2px">
+        </div>
+
+        <div class="slide" 
+             data-explan="5x5 inch fixed size image"
+             data-doc-explan="In the CSS, I specifically use inches (in) to fully satisfy the requirement (which is (5x5))"
+             data-html="&lt;img src=&quot;memes2.jpg&quot; class=&quot;size-5x5&quot;&gt;"
+             data-css=".size-5x5 {
+width: 5in;
+height: 5in;
+}">
+            <img src="memes2.jpg" alt="Fixed size" class="size-5x5">
+        </div>
+
+        <div class="slide" 
+             data-explan="Image with rounded borders"
+             data-doc-explan="I Did add &quot;Border: 2px solid #000&quot; to fully show that, the border is truly round."
+             data-html="&lt;img src=&quot;memes3.jpg&quot; class=&quot;rounded&quot;&gt;"
+             data-css=".rounded {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid #000;
+}">
+            <img src="memes3.jpeg" alt="Rounded" class="rounded">
+        </div>
+
+        <div class="slide" 
+             data-explan="Mixed rounded corners (top-left &amp; bottom-right)"
+             data-doc-explan="I did take advantage of the border-radius syntax: top-left, top-right, bottom-right, bottom-left. I did also use the &quot;Border: 2px solid #000&quot; to fully prove it is working. "
+             data-html="&lt;img src=&quot;memes4.jpg&quot; class=&quot;mixed-corners&quot;&gt;"
+             data-css=".mixed-corners {
+    border-radius: 30px 0 30px 0
+    border: 2px solid #000;
+}">
+            <img src="memes4.jpeg" alt="Mixed corners" class="mixed-corners">
+        </div>
+
+        <div class="slide" 
+             data-explan="Image linking to UE website"
+             data-doc-explan="N/A"
+             data-html="&lt;a href=&quot;https://www.ue.edu.ph&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;UE_LOGO.png&quot; alt=&quot;UE Link&quot;&gt;
+&lt;/a&gt;"
+             data-css="/* Default link styles */">
+            <a href="https://www.ue.edu.ph" target="_blank">
+                <img src="UE_LOGO.png" alt="UE Link">
+            </a>
+        </div>
+
+        <div class="slide" 
+             data-explan="Floating image (left float application)"
+             data-doc-explan="I did make use of the float attribute in this code.  Float has four values and is used for formatting and positioning.  Specifically, left, right, none, and inherit; however, I show the left in this code."
+             data-html="&lt;img src=&quot;memes5.jpg&quot; class=&quot;float-left&quot;&gt;
+&lt;p&gt;Float: Left&lt;/p&gt;"
+             data-css=".float-left {
+    float: left;
+}">
+            <img src="memes5.jpg" width="300px" height="200px" class="float-left">
+            <p style="overflow: hidden;">Float: Left</p>
+        </div>
+
+        <div class="slide" 
+             data-explan="Hover effect (scale transformation)"
+             data-doc-explan="The CSS code transform: scale(1.05) rotate(2deg); makes buttons, images, or other elements 5% larger and tilt them slightly when you hover over them, creating a fun, interactive effect. The transition: all 0.3s ease; line ensures these changes happen smoothly over 0.3 seconds, starting slow, speeding up, then easing out—like a gentle animation."
+             data-html="&lt;img src=&quot;memes6.jpg&quot; class=&quot;hover-effect&quot;&gt;"
+             data-css=".hover-effect:hover {
+    transform: scale(1.05) rotate(2deg);
+    transition: all 0.3s ease;
+}">
+            <img src="memes6.jpg" class="hover-effect">
+        </div>
+
+        <div class="slide" 
+             data-explan="Box shadow effect"
+             data-doc-explan="The CSS class .box-shadow applies a bold shadow effect where the shadow is positioned 15px to the right and 15px below the element, uses no blur (resulting in a sharp, solid shape), and adopts the color defined by the --accent-color CSS variable for consistency."
+             data-html="&lt;img src=&quot;memes7.jpg&quot; class=&quot;box-shadow&quot;&gt;"
+             data-css=".box-shadow {
+    box-shadow: 15px 15px 0 var(--accent-color);
+}">
+            <img src="memes7.jpg" width="300px" height="200px" class="box-shadow">
+        </div>
+
+        <div class="slide" 
+             data-explan="Shape outside (circle function)"
+             data-doc-explan="The .shape-circle class uses shape-outside: circle(50%) to create a circular text wrap boundary and clip-path: circle(50%) to visually crop the image into a circle. For functionality, ensure the image is floated (e.g., float: left), uses a square aspect ratio, and has sufficient text content to wrap."
+             data-html="&lt;img src=&quot;https://picsum.photos/150/150&quot; class=&quot;shape-circle&quot;&gt;"
+             data-css=".shape-circle {
+    shape-outside: circle(50%);
+    clip-path: circle(50%);
+    margin: 2rem;
+}">
+            <img src="https://picsum.photos/150/150" class="shape-circle" style="width: 150px; height: 150px;">
+        </div>
+
+        <div class="slide" 
+             data-explan="Shape outside (polygon function)"
+             data-doc-explan="The .shape-polygon class uses shape-outside: polygon(0 0, 100% 0, 100% 100%, 0 80%) to define a trapezoidal text wrap area and clip-path to visually crop the image into the same shape. "
+             data-html="&lt;img src=&quot;https://picsum.photos/308/200&quot; class=&quot;shape-polygon&quot;&gt;"
+             data-css=".shape-polygon {
+    shape-outside: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}">
+            <img src="https://picsum.photos/308/200" class="shape-polygon" style="width: 150px; height: 150px;">
+        </div>
+
+        <div class="slide" 
+        data-explan="Text Mask with my Full name & Favorite Place (Sunken Garden, University of the Philippines)"
+        data-doc-explan="N/A"
+        data-html="&lt;div class=&quot;mask1&quot;&gt;  &lt;img src=&quot;wallpaperflare.com_wallpaper.jpg&quot; alt=&quot;Eugene Masked&quot; width=&quot;600&quot; height=&quot;400&quot;&gt;&lt;/div&gt;"
+
+        data-css=" .mask1 {
+            -webkit-mask-image: url(output-onlinepngtools-removebg-preview.png);
+            -webkit-mask-image: url(output-onlinepngtools-removebg-preview.png);
+            mask-repeat: no-repeat;  
+            mask-size: cover; 
+            mask-position: center;
+            display: inline-block; 
+            mask-size: 1000px;
+            }">
+ 
+       <div class="mask1">
+        <img src="wallpaperflare.com_wallpaper.jpg" alt="Eugene Masked" width="600" height="400">
+        </div>
+        </div>
+
+        <div class="slide" 
+             data-explan="Link to Image Map page"
+             data-doc-explan="Styled link using anchor tag matching button appearance"
+             data-html="&lt;a href=&quot;imagemap.html&quot; class=&quot;link-button&quot;&gt;Click here for imagemap.html&lt;/a&gt;"
+             data-css=".link-button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }">
+
+        <a href="imagemap.html" class="link-button">Click here for imagemap.html</a>
+        </div>
+      
+       
+   </div>
+
+        <!-- Para Macontrol ng user  -->
+        <div class="controls">
+            <button onclick="previousSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+        <div class="explanation" id="explan-text"></div>
+    </div>
+
+    <!-- Para sa Information ng bawat slides -->
+    <div class="documentation-section">
+        <div class="explanation-section">
+            <h2>Explanation</h2>
+            <div class="text-explanation" id="data-explanation"></div>
+            <div class="code-display">
+                <div class="code-column">
+                    <h3>HTML</h3>
+                    <div class="code-content" id="html-code"></div>
+                </div>
+                <div class="code-column">
+                    <h3>CSS</h3>
+                    <div class="code-content" id="css-code"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const explanText = document.getElementById('explan-text');
+    
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            
+            const slideExplanation = slides[n].dataset.explan;
+            const docExplanation = slides[n].dataset.docExplan || slideExplanation;
+            
+            document.getElementById('explan-text').textContent = slideExplanation;
+            document.getElementById('data-explanation').textContent = docExplanation;
+            
+            document.getElementById('html-code').textContent = slides[n].dataset.html;
+            document.getElementById('css-code').textContent = slides[n].dataset.css;
+            
+            currentSlide = n;
+        }
+    
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+    
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        showSlide(0);
+    </script>
+
+    <footer style="text-align: center;">
+        <p>Created by: Custodio, Eugene T.</p>
+    </footer>
+</body>
+</html>
