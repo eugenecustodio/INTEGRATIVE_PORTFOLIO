@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer's Page!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 1s ease-out;
+    }
+
+
+    .fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease-out;
+    }
+
+    .animate-on-scroll.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+    .headser-bg {
+        background-color: black;
+        margin: 0;
+        padding: 20px;
+        color: white;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman', Times, serif;
+        background-color: lightblue;
+        height: 100vh;
+    }
+
+    .li-remove {
+        display: flex;
+        justify-content: right;
+        gap: 100px; 
+        padding-right: 100px;
+        list-style: none;
+        margin: 0;
+    }
+
+    .li-remove li {
+        padding: 10px;
+        transition: all 0.5s;
+    }
+
+    .li-remove li:hover {
+        font-size: 20px;
+        color: violet;
+    }
+
+    .content-front {
+        background-color: grey;
+        display: flex;
+    }
+
+    .content-front img {
+        padding-bottom: 30px;
+        padding-top: 50px;
+        padding-left: 30px;
+        width: 300px;
+        border-radius: 50%;
+        margin-right: 50px;
+    }
+
+    .bg-front-page {
+        margin: 30px;
+    }
+
+    .bg-front-page blockquote {
+        background-color: #fff;
+        border-left: 5px solid violet;
+        padding: 20px 25px;
+        margin: 20px;
+        border-radius: 10px;
+        font-style: italic;
+        line-height: 1.6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .biography {
+        background-color: whitesmoke;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+
+    .biography h1{
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .table_education{
+        border-color: red;
+        margin-bottom: 30px;
+    }
+    .table_education table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .table_education th{
+        padding: 30px;
+    }
+
+    .table_education th, td{
+        border: 3px solid black;
+        padding: 30px;
+    }
+    .break{
+        flex-basis: 100%;
+        height: 1;
+    }
+
+    @keyframes fadeInUp {
+        0% {
+        opacity: 0;
+        transform: translateY(20px);
+        }
+        100% {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }
+    
+    .table_education tr {
+        opacity: 0; 
+        animation: fadeInUp 0.1s forwards;
+    }
+    
+    .table_education tr:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+    .table_education tr:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+    .table_education tr:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+    .table_education tr:nth-child(4) {
+        animation-delay: 0.8s;
+    }
+    .table_education tr:nth-child(5) {
+        animation-delay: 1s;
+    }
+    
+    .Interest {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .Interests_and_hobbies_lists {
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.6s ease;
+        margin: 1.5rem 0;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid rgba(0, 0, 0, 0.1); 
+    }
+
+    .Interests_and_hobbies_lists.visible {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .Interests_and_hobbies_lists:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        border-left: 5px solid #ff6b6b;
+        border: 2px solid rgba(0, 0, 0, 0.1); 
+    }
+
+    .Interests_and_hobbies_lists h3 {
+        font-size: 1.5rem;
+        color: #2d3436;
+        margin-bottom: 1rem;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .Interests_and_hobbies_lists h3::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: violet;
+        transition: width 0.3s ease;
+    }
+
+    .Interests_and_hobbies_lists:hover h3 {
+        color: #ff6b6b;
+    }
+
+    .Interests_and_hobbies_lists:hover h3::after {
+        width: 100px;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-on-scroll {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .book-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .book-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .book-row img {
+        flex: 1;
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .Skills {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.6s ease;
+        width: 80%;
+        max-width: 1200px;
+    }
+
+    .Skills.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .Skills h3 {
+        font-size: 2rem;
+        color: #2d3436;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .Skills ul {
+        columns: 2;
+        list-style-type: square;
+        padding-left: 2rem;
+    }
+
+    .Skills li {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        padding: 8px 0;
+        transition: transform 0.3s ease;
+    }
+
+    .Skills li:hover {
+        transform: translateX(10px);
+        color: #ff6b6b;
+    }
+
+    /* Books Section */
+    .Books {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.6s ease;
+        width: 80%;
+        max-width: 1200px;
+    }
+
+    .Books.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .Books h3 {
+        font-size: 2rem;
+        color: #2d3436;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .book-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .book-row img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .book-row img:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+
+    /* Social Footer */
+    .social-footer {
+        background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-top: 4rem;
+        border-radius: 15px 15px 0 0;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    }
+
+    .social-footer h3 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+    }
+
+    .social-link {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        border: 2px solid rgba(255,255,255,0.1);
+    }
+
+    .social-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.1);
+        transform: scale(0);
+        transition: transform 0.3s ease;
+        border-radius: 50%;
+    }
+
+    .social-link:hover::before {
+        transform: scale(1);
+    }
+
+    .social-link i {
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s ease;
+    }
+
+    .facebook { background: #3b5998; }
+    .linkedin { background: #0077b5; }
+    .codeforces { background: #ff6b6b; }
+
+    .social-link:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+
+    .social-link:hover i {
+        color: white;
+    }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+      <p>Loading...</p>
+    </div>
+
+    <div class="animate-on-scroll">
+    <header class="headser-bg">
+        <ul class="li-remove">
+            <li>
+              <a href="http://www.testing-domain.infinityfreeapp.com/" target="_blank" style="color:white; text-decoration: none;">Home</a>
+            </li>
+            <li>Projects</li>
+            <li>About Me</li>
+        </ul> 
+    </header>
+</div>
+
+    <div class="content-front animate-on-scroll">
+        <img src="../picture.jpeg" alt="Example">
+        <div class="bg-front-page">
+            <blockquote style="background-color: white; font-style:italic">
+                Hello, Curious Visitor! <br><br>""
+                Hello! I am Eugene Custodio, From the College of Computer Studies and Systems! Currently Enrolled under the Computer Science Degree at the University of the East-Manila Campus. 
+                This is my Developer's Page for my Integrative Programming and Technologies 1 (CIP_1101), you'll find on this domain:
+                <br>
+                <ul>
+                    <li>Activities Related to Integrative Programming and Technologies 1</li>
+                    <li>Machine Learning/Artificial Intelligence Prototype/Model</li>
+                    <li>Other Activities Related to Computer Science</li>
+                </ul>
+                Since you know what to expect and want to know more about me, please scroll down!
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="biography animate-on-scroll">
+        <h1> Education </h1>
+        <div class="break"></div>
+        <div class="table_education animate-on-scroll">
+            <table>
+                <tr> 
+                    <th> School Name </th>
+                    <th> School Year </th>
+                    <th> Organization/s a part of</th>
+                </tr>
+                <tr>
+                    <td> University of the East </td>
+                    <td> 2023 - Present</td>
+                    <td> N/A </td>
+                </tr>
+                <tr>
+                    <td> Sto. Nino Catholic School </td>
+                    <td> 2018 - 2023 </td>
+                    <td> Robotics Club</td>
+                </tr>
+                <tr>
+                    <td> Thy Covenant Montessori School </td>
+                    <td> 2015 - 2018</td>
+                    <td> N/A</td>
+                </tr>
+                <tr>
+                    <td> SBP Child Learning Advancement School Inc. </td>
+                    <td> 2009 - 2015</td>
+                    <td> N/A </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="Interest animate-on-scroll">
+        <h1> Hobbies and Interest </h1>
+        <div class="break"></div>
+        <div class="Interests_and_hobbies_lists">
+            <h3>Competitive Programming </h3>
+            <div class="break"></div>
+            <p> At its core, competitive programming is about tackling well-defined puzzles that require innovative thinking. Contestants are presented with problems that often involve topics such as combinatorics, graph theory, dynamic programming, and computational geometry. Each challenge must be solved within a strict time limit and with careful attention to memory constraints, so the solutions are not only required to be correct but also highly optimized. Participants submit their code to automated judges, which test it against a suite of hidden test cases to ensure its reliability and efficiency.</p>
+        </div>
+        <br>
+        <div class="Interests_and_hobbies_lists">
+            <h3>Data Structures and Algorithms </h3>
+            <div class="break"></div>
+            <p> Data structures are fundamental constructs that organize, manage, and store data efficiently, enabling optimized access and modification. They form the backbone of computer science, shaping how algorithms process information to solve real-world problems. From simple arrays and linked lists to complex trees, graphs, and hash tables, each structure offers unique advantages in terms of speed, memory usage, and scalability. Understanding data structures is critical for designing algorithms that perform efficiently under varying constraints, such as time complexity or storage limitations. They are applied everywhere, from database management and operating systems to artificial intelligence and web development. Mastery of data structures empowers developers to choose the right tool for specific tasks, balancing trade-offs between performance and resource consumption. By studying these foundational concepts, learners gain problem-solving skills essential for software engineering and computational thinking. Ultimately, data structures are the building blocks that translate abstract logic into practical, high-performance solutions.</p>
+        </div>
+    <div class="Interests_and_hobbies_lists">
+        <h3>Machine Learning/Artificial Intelligence </h3>
+        <div class="break"></div>
+        <p> Artificial Intelligence (AI) and Machine Learning (ML) represent transformative technologies that enable machines to mimic human intelligence and learn from data. AI encompasses systems designed to perform tasks like reasoning, problem-solving, and perception, while ML focuses on algorithms that improve automatically through experience. Unlike traditional programming, ML models identify patterns in data to make predictions or decisions, powering innovations like image recognition, natural language processing, and autonomous systems. Key techniques include supervised learning, unsupervised learning, reinforcement learning, and neural networks, each suited to different challenges. The rise of big data and advanced computing has accelerated breakthroughs in deep learning, enabling complex tasks such as real-time language translation and medical diagnosis. However, ethical considerations—like bias, transparency, and privacy—remain critical as these technologies reshape industries. By blending mathematics, statistics, and domain expertise, AI/ML unlocks solutions to previously intractable problems. As a rapidly evolving field, it promises to redefine innovation across healthcare, finance, robotics, and beyond.</p>
+    </div>
+    </div>
+
+    <div class="Skills animate-on-scroll">
+        <h3>Skills</h3>
+        <div class="break"></div>
+        <p>Here are some essential skills I have!</p>
+        <ul>
+            <li>Problem Solving & Critical Thinking</li>
+            <li>Programming Proficiency (C++, Java, Python, etc.)</li>
+            <li>Data Structures & Algorithms</li>
+            <li>Mathematical & Logical Reasoning</li>
+            <li>Software Development Principles</li>
+            <li>Debugging & Optimization</li>
+            <li>Effective Communication & Collaboration</li>
+        </ul>
+    </div>
+
+    <div class="Books animate-on-scroll">
+        <h3>Books I Read</h3>
+        <div class="break"></div>
+        <div class="book-grid">
+            <div class="book-row">
+                <img src="https://cdn.kobo.com/book-images/0be0a7aa-396d-4c34-9b3d-c94de4c41c46/353/569/90/False/atomic-habits-tiny-changes-remarkable-results.jpg" alt="Book 1 Cover">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDg7g4G4noCRirArFlduwDp9Nk6U8FQMxtxA&s" alt="Book 2 Cover">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGotnyB2Z16VRStuNS_6eAgFFwfAZnTCmCQ&s" alt="Book 3 Cover">
+            </div>
+            <div class="book-row">
+                <img src="https://m.media-amazon.com/images/I/611X8GI7hpL.jpg" alt="Book 4 Cover">
+                <img src="https://m.media-amazon.com/images/I/71dSbi33qPL.jpg" alt="Book 5 Cover">
+                <img src="https://m.media-amazon.com/images/I/71w7hnp05dL._UF1000,1000_QL80_.jpg" alt="Book 6 Cover">
+            </div>
+        </div>
+    </div>
+  </div>
+
+<div class="social-footer animate-on-scroll">
+    <h3>Connect With Me</h3>
+    <div class="social-links">
+        <a href="https://www.facebook.com/asher.hendrix.52/" target="_blank" class="social-link facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://codeforces.com/profile/genetheCPlusPlus" target="_blank" class="social-link codeforces">
+            <i class="fab fa-connectdevelop"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/geneee" target="_blank" class="social-link linkedin">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+    </div>
+</div>
+    <script>
+            window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 1000);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+        observer.observe(element);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.Interests_and_hobbies_lists').forEach((element) => {
+            observer.observe(element);
+        });
+    });
+
+    document.querySelectorAll('.social-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            let x = e.clientX - e.target.offsetLeft;
+            let y = e.clientY - e.target.offsetTop;
+            let ripple = document.createElement('span');
+            
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 500);
+        });
+    });
+    </script>
+</body>
+</html>
