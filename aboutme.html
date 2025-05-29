@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eugene Custodio | Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    :root {
+        --primary-dark: #0a192f;
+        --secondary-dark: #112240;
+        --accent: #64ffda;
+        --light-text: #ccd6f6;
+        --medium-text: #8892b0;
+        --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+        --section-spacing: 100px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        background-color: var(--primary-dark);
+        color: var(--light-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 1s ease-out;
+    }
+
+    .preloader-content {
+        text-align: center;
+    }
+
+    .preloader-spinner {
+        width: 60px;
+        height: 60px;
+        border: 5px solid rgba(100, 255, 218, 0.3);
+        border-top: 5px solid var(--accent);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+    }
+
+    .fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Header & Navigation */
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(10, 25, 47, 0.9);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+        padding: 20px 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent);
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+    }
+
+    nav a {
+        color: var(--light-text);
+        text-decoration: none;
+        font-size: 1.1rem;
+        position: relative;
+        transition: var(--transition);
+    }
+
+    nav a:hover {
+        color: var(--accent);
+    }
+
+    nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent);
+        transition: var(--transition);
+    }
+
+    nav a:hover::after {
+        width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 0 10%;
+        padding-top: 100px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        max-width: 700px;
+        z-index: 2;
+    }
+
+    .hero-subtitle {
+        color: var(--accent);
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.1;
+    }
+
+    .hero-description {
+        color: var(--medium-text);
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        max-width: 600px;
+    }
+
+    .hero-image {
+        position: absolute;
+        right: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, rgba(100, 255, 218, 0.1), transparent);
+        overflow: hidden;
+        border: 2px solid rgba(100, 255, 218, 0.2);
+        box-shadow: 0 0 50px rgba(100, 255, 218, 0.1);
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background: transparent;
+        color: var(--accent);
+        border: 2px solid var(--accent);
+        border-radius: 5px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button:hover {
+        background: rgba(100, 255, 218, 0.1);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+    }
+
+    /* Section Styling */
+    section {
+        padding: var(--section-spacing) 10%;
+        position: relative;
+    }
+
+    .section-header {
+        margin-bottom: 70px;
+        display: flex;
+        align-items: center;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--light-text);
+        margin-right: 20px;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 300px;
+        height: 1px;
+        background: var(--medium-text);
+        margin-top: 15px;
+        opacity: 0.3;
+    }
+
+    .section-number {
+        color: var(--accent);
+        font-size: 1.5rem;
+        font-family: 'Roboto Mono', monospace;
+    }
+
+    /* Education Section */
+    .education-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .education-card {
+        background: var(--secondary-dark);
+        border-radius: 10px;
+        padding: 30px;
+        transition: var(--transition);
+        border: 1px solid rgba(100, 255, 218, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .education-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(100, 255, 218, 0.3);
+    }
+
+    .education-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.05), transparent);
+        z-index: -1;
+    }
+
+    .school-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--accent);
+    }
+
+    .education-period {
+        color: var(--accent);
+        font-size: 1rem;
+        margin-bottom: 15px;
+        font-family: 'Roboto Mono', monospace;
+    }
+
+    .organization {
+        background: rgba(100, 255, 218, 0.1);
+        color: var(--accent);
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+
+    /* Interests Section */
+    .interests-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .interest-card {
+        background: var(--secondary-dark);
+        border-radius: 10px;
+        padding: 40px;
+        transition: var(--transition);
+        border: 1px solid rgba(100, 255, 218, 0.1);
+    }
+
+    .interest-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(100, 255, 218, 0.3);
+    }
+
+    .interest-icon {
+        font-size: 3rem;
+        color: var(--accent);
+        margin-bottom: 25px;
+    }
+
+    .interest-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .interest-description {
+        color: var(--medium-text);
+        line-height: 1.8;
+    }
+
+    /* Skills Section */
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .skill-tag {
+        background: rgba(100, 255, 218, 0.1);
+        color: var(--accent);
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        transition: var(--transition);
+    }
+
+    .skill-tag:hover {
+        background: rgba(100, 255, 218, 0.2);
+        transform: translateY(-3px);
+    }
+
+    /* Books Section */
+    .books-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 25px;
+    }
+
+    .book-card {
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        height: 280px;
+        transition: var(--transition);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .book-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(100, 255, 218, 0.2);
+    }
+
+    .book-cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .book-card:hover .book-cover {
+        transform: scale(1.05);
+    }
+
+    .book-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(10, 25, 47, 0.9), transparent);
+        padding: 20px;
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    .book-card:hover .book-overlay {
+        opacity: 1;
+    }
+
+    .book-title {
+        color: var(--light-text);
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    /* Social Footer */
+    .social-footer {
+        background: var(--secondary-dark);
+        padding: 80px 10%;
+        text-align: center;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .social-title {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: var(--light-text);
+    }
+
+    .social-subtitle {
+        color: var(--medium-text);
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 50px;
+        line-height: 1.8;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .social-link {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        text-decoration: none;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--accent);
+        color: var(--accent);
+    }
+
+    .social-link:hover {
+        transform: translateY(-8px) scale(1.1);
+        color: var(--primary-dark);
+        background: var(--accent);
+        box-shadow: 0 10px 30px rgba(100, 255, 218, 0.4);
+    }
+
+    .copyright {
+        margin-top: 70px;
+        color: var(--medium-text);
+        font-size: 1rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+    }
+
+    .animate-on-scroll.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1100px) {
+        .hero-image {
+            display: none;
+        }
+        
+        .hero-content {
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        header {
+            padding: 15px 5%;
+        }
+        
+        nav ul {
+            gap: 20px;
+        }
+        
+        .hero {
+            padding: 100px 5% 50px;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+        }
+        
+        .section-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .section-title::after {
+            width: 100px;
+        }
+        
+        .section-title {
+            margin-bottom: 10px;
+        }
+        
+        .interests-grid,
+        .education-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .social-links {
+            gap: 20px;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        nav ul {
+            gap: 15px;
+        }
+        
+        .hero-title {
+            font-size: 2.2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .interest-card {
+            padding: 30px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-spinner"></div>
+            <h3>Loading Portfolio...</h3>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo"><span style="color: #64ffda;"></span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#books">Books</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Hello, I'm</div>
+            <h1 class="hero-title">Eugene Custodio</h1>
+            <p class="hero-description">
+                Computer Science student at the University of the East Manila Campus. 
+                Passionate about programming, algorithms, and AI development.
+            </p>
+            <a href="#education" class="cta-button">Explore Portfolio</a>
+        </div>
+        <div class="hero-image">
+            <img src="picture.jpeg" alt="Eugene Custodio">
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="section-header">
+            <h2 class="section-title">Education</h2>
+            <span class="section-number">01</span>
+        </div>
+        
+        <div class="education-container">
+            <div class="education-card animate-on-scroll">
+                <h3 class="school-name">University of the East</h3>
+                <div class="education-period">2023 - Present</div>
+                <p>Bachelor of Science in Computer Science</p>
+                <span class="organization">N/A</span>
+            </div>
+            
+            <div class="education-card animate-on-scroll">
+                <h3 class="school-name">Sto. Nino Catholic School</h3>
+                <div class="education-period">2018 - 2023</div>
+                <p>Senior High School Graduate</p>
+                <span class="organization">Robotics Club</span>
+            </div>
+            
+            <div class="education-card animate-on-scroll">
+                <h3 class="school-name">Thy Covenant Montessori School</h3>
+                <div class="education-period">2015 - 2018</div>
+                <p>Junior High School Graduate</p>
+                <span class="organization">N/A</span>
+            </div>
+            
+            <div class="education-card animate-on-scroll">
+                <h3 class="school-name">SBP Child Learning Advancement School Inc.</h3>
+                <div class="education-period">2009 - 2015</div>
+                <p>Elementary Graduate</p>
+                <span class="organization">N/A</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="interests" style="background: #0c2039;">
+        <div class="section-header">
+            <h2 class="section-title">Hobbies & Interests</h2>
+            <span class="section-number">02</span>
+        </div>
+        
+        <div class="interests-grid">
+            <div class="interest-card animate-on-scroll">
+                <div class="interest-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3 class="interest-title">Competitive Programming</h3>
+                <p class="interest-description">
+                    Competitive programming involves solving algorithmic problems under time constraints. 
+                    It sharpens problem-solving skills and requires knowledge of data structures and algorithms.
+                </p>
+            </div>
+            
+            <div class="interest-card animate-on-scroll">
+                <div class="interest-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="interest-title">Data Structures & Algorithms</h3>
+                <p class="interest-description">
+                    Data structures are fundamental constructs that organize, manage, and store data efficiently. 
+                    Understanding them is critical for designing efficient algorithms and solving complex problems.
+                </p>
+            </div>
+            
+            <div class="interest-card animate-on-scroll">
+                <div class="interest-icon"><i class="fas fa-robot"></i></div>
+                <h3 class="interest-title">Machine Learning & AI</h3>
+                <p class="interest-description">
+                    AI and ML enable machines to mimic human intelligence and learn from data. 
+                    They power innovations like image recognition, NLP, and autonomous systems, 
+                    revolutionizing multiple industries.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header">
+            <h2 class="section-title">Skills</h2>
+            <span class="section-number">03</span>
+        </div>
+        
+        <div class="skills-container animate-on-scroll">
+            <div class="skill-tag">Problem Solving</div>
+            <div class="skill-tag">Critical Thinking</div>
+            <div class="skill-tag">C++ Programming</div>
+            <div class="skill-tag">Java Programming</div>
+            <div class="skill-tag">Python Programming</div>
+            <div class="skill-tag">Data Structures</div>
+            <div class="skill-tag">Algorithms</div>
+            <div class="skill-tag">Mathematical Reasoning</div>
+            <div class="skill-tag">Logical Reasoning</div>
+            <div class="skill-tag">Software Development</div>
+            <div class="skill-tag">Debugging</div>
+            <div class="skill-tag">Optimization</div>
+            <div class="skill-tag">Communication</div>
+            <div class="skill-tag">Collaboration</div>
+        </div>
+    </section>
+
+    <section id="books" style="background: #0c2039;">
+        <div class="section-header">
+            <h2 class="section-title">Books I've Read</h2>
+            <span class="section-number">04</span>
+        </div>
+        
+        <div class="books-grid">
+            <div class="book-card animate-on-scroll">
+                <img src="https://cdn.kobo.com/book-images/0be0a7aa-396d-4c34-9b3d-c94de4c41c46/353/569/90/False/atomic-habits-tiny-changes-remarkable-results.jpg" alt="Atomic Habits" class="book-cover">
+                <div class="book-overlay">
+                    <div class="book-title">Atomic Habits</div>
+                </div>
+            </div>
+            
+            <div class="book-card animate-on-scroll">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDg7g4G4noCRirArFlduwDp9Nk6U8FQMxtxA&s" alt="Deep Work" class="book-cover">
+                <div class="book-overlay">
+                    <div class="book-title">Deep Work</div>
+                </div>
+            </div>
+            
+            <div class="book-card animate-on-scroll">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGotnyB2Z16VRStuNS_6eAgFFwfAZnTCmCQ&s" alt="The Pragmatic Programmer" class="book-cover">
+                <div class="book-overlay">
+                    <div class="book-title">The Pragmatic Programmer</div>
+                </div>
+            </div>
+            
+            <div class="book-card animate-on-scroll">
+                <img src="https://m.media-amazon.com/images/I/611X8GI7hpL.jpg" alt="Clean Code" class="book-cover">
+                <div class="book-overlay">
+                    <div class="book-title">Clean Code</div>
+                </div>
+            </div>
+            
+            <div class="book-card animate-on-scroll">
+                <img src="https://m.media-amazon.com/images/I/71dSbi33qPL.jpg" alt="Introduction to Algorithms" class="book-cover">
+                <div class="book-overlay">
+                    <div class="book-title">Introduction to Algorithms</div>
+                </div>
+            </div>
+            
+            <div class="book-card animate-on-scroll">
+                <img src="https://m.media-amazon.com/images/I/71w7hnp05dL._UF1000,1000_QL80_.jpg" alt="Design Patterns" class="book-cover">
+                <div class="book-overlay">
+                    <div class="book-title">Design Patterns</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-footer">
+        <h2 class="social-title">Connect With Me</h2>
+        <p class="social-subtitle">
+            Feel free to reach out for collaborations or just to say hello!
+        </p>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/asher.hendrix.52/" target="_blank" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://codeforces.com/profile/genetheCPlusPlus" target="_blank" class="social-link">
+                <i class="fab fa-connectdevelop"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/geneee" target="_blank" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        
+        <div class="copyright">
+            © 2023 Eugene Custodio. All Rights Reserved.
+        </div>
+    </section>
+
+    <script>
+    // Preloader
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 1000);
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+        observer.observe(element);
+    });
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            window.scrollTo({
+                top: targetSection.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.padding = '15px 10%';
+            header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+        } else {
+            header.style.padding = '20px 10%';
+            header.style.boxShadow = 'none';
+        }
+    });
+    </script>
+</body>
+</html>

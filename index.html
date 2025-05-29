@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custodio, Eugene T. - Ubuntu Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="loading">
+    <!-- Ubuntu Loading Screen -->
+    <div id="ubuntu-loading">
+        <img src="picture.jpeg" alt="Eugene Custodio">
+        <h1>Welcome to my Portfolio!</h1>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="loading-text">Loading creativity modules...</div>
+    </div>
+    <div class="ubuntu-panel">
+        <div class="panel-left" id="taskbar">
+            <span>Applications</span>
+            <span>Places</span>
+            <span>System</span>
+        </div>
+        <div class="panel-center">
+            <span id="live-clock"></span>
+        </div>
+        <div class="panel-right">
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-volume-up"></i>
+            <i class="fas fa-battery-half"></i>
+        </div>
+    </div>
+
+    <nav class="ubuntu-dock">
+        <div class="dock-item" onclick="showWindow('terminal')">
+            <i class="fas fa-terminal"></i>
+        </div>
+        <div class="dock-item" onclick="showWindow('portfolio')">
+            <i class="fas fa-folder-open"></i>
+        </div>
+    </nav>
+
+    <div class="window terminal">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>Terminal</span>
+        </div>
+        <div class="window-content terminal-content">
+            <div class="terminal-line">Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-39-generic x86_64)</div>
+            <div class="terminal-line prompt">sudo apt-get install portfolio</div>
+            <div class="terminal-line">Reading package lists... Done</div>
+            <div class="terminal-line">Building dependency tree... Done</div>
+            <div class="terminal-line">Installing creativity modules... [100%]</div>
+            <div class="terminal-line input-line">
+                <span class="prompt">eugenecustodioportfolio: ~/Portfolio$ </span>
+                <input type="text" class="terminal-input" autofocus>
+            </div>
+        </div>
+    </div>
+
+    <div class="desktop-file" style="left: 100px; top: 645px;" onclick="showWindow('firefox-window', 'aboutme.html')">
+        <i class="fas fa-user"></i>
+        <span>About Me</span>
+    </div>
+
+    <div class="desktop-file" onclick="showWindow('readme-window')">
+        <i class="fas fa-file-alt"></i>
+        <span>README.TXT</span>
+    </div>
+
+    <div class="desktop-file" style="left: 100px; top: 200px;" onclick="showWindow('lecture-window')">
+        <i class="fas fa-folder"></i>
+        <span>Lecture</span>
+    </div>
+
+    <div class="desktop-file" style="left: 100px; top: 300px;" onclick="showWindow('prelim-window')">
+        <i class="fas fa-folder"></i>
+        <span>Activities for Prelim</span>
+    </div>
+
+    <div class="desktop-file" style="left: 100px; top: 400px;" onclick="showWindow('midterms-window')">
+        <i class="fas fa-folder"></i>
+        <span>Activities for Midterms</span>
+    </div>
+
+    <div class="desktop-file" style="left: 100px; top: 515px;" onclick="showWindow('finals-window')">
+        <i class="fas fa-folder"></i>
+        <span>Activities for Finals</span>
+    </div>
+
+    <div class="window animation-terminal" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>Stickman Runner</span>
+        </div>
+        <div class="window-content terminal-content">
+            <div class="animation-container"></div>
+        </div>
+    </div>
+
+    <div class="window readme-window" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>README</span>
+        </div>
+        <div class="window-content">
+            <pre class="terminal-text">Hello! Temporary Prototyping for Navigation Bar.</pre>
+        </div>
+    </div>
+
+
+
+    <div class="window terminal lecture-window" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>Lecture Notes</span>
+        </div>
+        <div class="window-content" style="display: flex; gap: 20px; padding: 20px;">
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('html-folder-window')">
+                <i class="fas fa-folder"></i>
+                <span>HTML</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="window terminal prelim-window" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>Prelim Activities</span>
+        </div>
+        <div class="window-content" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Activities_Prelims/imagegallery.html')">
+                <i class="fas fa-file-code"></i>
+                <span>imagegallery<br>.html</span>
+            </div>
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Activities_Prelims/Developers_Page.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Developers <br>Page.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Activities_Prelims/PrelimHandsOnQuiz1.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Quiz1.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Activities_Prelims/Furniture.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Furniture.html</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Midterm Activities window -->
+    <div class="window terminal midterms-window" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>Midterm Activities</span>
+        </div>
+        <div class="window-content" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
+            <!-- Table of Contents file -->
+            <div class="desktop-file" style="position: relative; left: 0px; top: 0;"
+                onclick="showWindow('firefox-window', './Midterm_Activities/MidAct2LIST-1.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Tableof<br>Contents.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 10px; top: 0;"
+                onclick="showWindow('firefox-window', './Midterm_Activities/www.cip1101custodio-20250529T123826Z-1-001/www.cip1101custodio/act3_Imagemapping.html')">
+                <i class="fas fa-file-code"></i>
+                <span>imagemapping<br>.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 30px; top: 0;"
+                onclick="showWindow('firefox-window', './Midterm_Activities/AdmissionForm.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Admission<br>Form.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 30px; top: 0;"
+                onclick="showWindow('firefox-window', './Midterm_Activities/Midterm Exam-20250529T124814Z-1-001/Midterm Exam/InformativePage.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Informative<br>Page.html</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="window terminal finals-window" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>Final Activities</span>
+        </div>
+        <div class="window-content" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Finals_Activities/Admin_Dashboard.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Admin_<br>Dashboard.html</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="window terminal project-window" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>Final Project</span>
+        </div>
+        <div class="window-content">
+            <pre class="terminal-text">Movie Reviews Capstone Project</pre>
+        </div>
+    </div>
+
+    <div class="window terminal firefox-window" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>Firefox</span>
+        </div>
+        <div class="window-content">
+            <div class="firefox-ui">
+                <div class="firefox-toolbar">
+                    <div class="firefox-nav-controls">
+                        <button class="ff-button" onclick="navBack()"><i class="fas fa-chevron-left"></i></button>
+                        <button class="ff-button" onclick="navForward()"><i class="fas fa-chevron-right"></i></button>
+                        <button class="ff-button" onclick="reloadPage()"><i class="fas fa-redo"></i></button>
+                    </div>
+                    <div class="firefox-url-bar">
+                        <i class="fab fa-firefox"></i>
+                        <input type="text" id="url-bar" placeholder="Enter URL or search">
+                    </div>
+                    <button class="ff-button" onclick="newTab()"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="tab-bar" id="tab-bar">
+                    <!-- Tabs will be dynamically added here -->
+                </div>
+            </div>
+            <div class="firefox-content" id="tab-content">
+                <!-- Tab content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Update this section -->
+    <div class="window terminal html-folder-window" style="display: none;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+            <span>HTML Folder</span>
+        </div>
+        <div class="window-content" style="display: flex; gap: 20px; padding: 20px;">
+            <!-- Existing Lect1.html entry -->
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Lecture/Lect1.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Lect1.html</span>
+            </div>
+
+            <!-- Add this new entry for Lect2.html -->
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Lecture/Lect2.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Lect2.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Lecture/Lect3.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Lect3.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Lecture/Lect4.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Lect4.html</span>
+            </div>
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Lecture/Lect5.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Lect5.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Lecture/Lect6.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Lect6.html</span>
+            </div>
+
+            <div class="desktop-file" style="position: relative; left: 0; top: 0;"
+                onclick="showWindow('firefox-window', './Lecture/Lect7.html')">
+                <i class="fas fa-file-code"></i>
+                <span>Lect7.html</span>
+            </div>
+
+        </div>
+
+
+        <script src="script.js"></script>
+</body>
+
+</html>
